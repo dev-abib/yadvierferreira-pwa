@@ -1,18 +1,27 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { RegisterSW } from "./register-sw";
+import { AppShell } from "./components/layout/app-shell";
 
 
 export const metadata: Metadata = {
-  title: "Your App Name",
-  description: "Your app description",
+  title: "CoffeeChat",
+  description: "Find the best coffer around you.",
   manifest: "/manifest.webmanifest",
-  themeColor: "#5C7A5C",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "Your App Name",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+  themeColor: "#5C7A5C",
 };
 
 export default function RootLayout({
@@ -23,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <AppShell>{children}</AppShell>
         <RegisterSW />
       </body>
     </html>
