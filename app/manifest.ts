@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Your App Name",
-    short_name: "App",
-    description: "A short description of what your app does",
+    name: "CoffeeChat",
+    short_name: "CoffeeChat",
+    description: "Network with professionals over coffee.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
