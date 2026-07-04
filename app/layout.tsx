@@ -1,7 +1,14 @@
 import type { Metadata, Viewport } from "next";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { RegisterSW } from "./register-sw";
 import { AppShell } from "./components/layout/app-shell";
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-dm-sans",
+});
 
 
 export const metadata: Metadata = {
@@ -30,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={dmSans.variable} suppressHydrationWarning>
       <body>
         <AppShell>{children}</AppShell>
         <RegisterSW />
