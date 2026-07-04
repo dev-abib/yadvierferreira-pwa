@@ -8,15 +8,19 @@ const BottomNav = dynamic(
   { ssr: false }
 );
 
+// Routes that should not show the bottom navigation bar
+const HIDE_NAV_ROUTES = new Set(["/", "/login"]);
+
 export function AppShell({ children }: { children: ReactNode }) {
   const pathName = usePathname();
+  const hideNav = HIDE_NAV_ROUTES.has(pathName);
 
   return (
     <div className="min-h-screen flex flex-col">
-      <main className={`flex-1 w-full ${pathName !== "/" ? "pb-20" : ""}`}>
+      <main className={`flex-1 w-full ${!hideNav ? "pb-20" : ""}`}>
         {children}
       </main>
-      {pathName !== "/" && <BottomNav />}
+      {!hideNav && <BottomNav />}
     </div>
   );
 }

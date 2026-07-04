@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @theme {
   --color-primary-coffee: rgba(15, 10, 6, 0.95);
   --color-primary-bg: #0d0906;
@@ -16,6 +17,7 @@
   /* font family */
 
   --font-dm-sans: var(--font-dm-sans), "DM Sans", sans-serif;
+  --font-satisfy: var(--font-satisfy), "Satisfy", cursive;
 
   --breakpoint-xs: 375px;
   --breakpoint-sm: 480px;
