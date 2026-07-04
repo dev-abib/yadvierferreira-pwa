@@ -1,11 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @import "tailwindcss";
 
 @theme {
   --color-primary-coffee: rgba(15, 10, 6, 0.95);
+  --color-primary-bg: #0d0906;
+  --color-transparent-gray: rgba(70, 70, 70, 0.5);
+
+  /* Container */
+  --container-max-width: 1360px;
+  --container-padding-x: 1rem;
+  --container-padding-y: 2rem;
+
+  /* Shadows */
+  --shadow-nav-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.08);
+
+  /* font family */
+
+  --font-dm-sans: "DM Sans", sans-serif;
+
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 576px;
+  --breakpoint-lg: 768px;
+  --breakpoint-xl: 1024px;
+  --breakpoint-2xl: 1280px;
+  --breakpoint-3xl: 1440px;
+  --breakpoint-4xl: 1760px;
 }
 
 @layer components {
-
+  .container {
+    max-width: var(--container-max-width);
+    padding-left: var(--container-padding-x);
+    padding-right: var(--container-padding-x);
+    padding-top: var(--container-padding-y);
+    padding-bottom: var(--container-padding-y);
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @layer base {

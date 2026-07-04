@@ -1,14 +1,22 @@
+"use client";
 import { ReactNode } from "react";
-import { BottomNav } from "./bottom-nav";
-import { Container } from "./container";
+import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
+
+const BottomNav = dynamic(
+  () => import("./bottom-nav").then((mod) => mod.BottomNav),
+  { ssr: false }
+);
 
 export function AppShell({ children }: { children: ReactNode }) {
+  const pathName = usePathname();
+
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <main className="flex-1 w-full pb-20">
-        <Container>{children}</Container>
+    <div className="min-h-screen flex flex-col">
+      <main className={`flex-1 w-full ${pathName !== "/" ? "pb-20" : ""}`}>
+        {children}
       </main>
-      <BottomNav />
+      {pathName !== "/" && <BottomNav />}
     </div>
   );
 }

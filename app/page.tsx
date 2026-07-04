@@ -1,18 +1,37 @@
 import React from "react";
+import { Coffee } from "./components/SvgContainer/SvgContainer";
+import coffe from "@/app/assets/img/coffee.png";
+import Image from "next/image";
 
-const page = () => {
+const Page = () => {
   return (
     <section
+      className="relative flex items-center justify-center"
       style={{
-        height: "100%",
+        height: "100vh",
         width: "100%",
-        background:
-          "radial-gradient(54.66% 123.76% at 50% 50%, rgba(13, 9, 6, 0.00) 20%, rgba(13, 9, 6, 0.80) 100%)",
+        background: "#0D0906",
+        backdropFilter: "60px",
       }}
     >
-      <h1>hello world ...</h1>
+      <div className="flex flex-col gap-y-[12.8px] items-center  ">
+        <div className="flex flex-col gap-y-2.5 items-center">
+          <Image
+            src={coffe}
+            height={130}
+            width={130}
+            className="h-[130px] w-[130px]  object-cover"
+            alt="not found"
+          />
+          <Coffee />
+        </div>
+
+        <span className="text-lg text-[#D8C2B4E5] font-normal leading-[160%] tracking-[0.45px] font-dm-sans ">
+          Is in Cursive writing
+        </span>
+      </div>
     </section>
   );
 };
 
-export default page;
+export default Page;

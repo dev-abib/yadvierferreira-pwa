@@ -3,8 +3,13 @@ import { useEffect } from "react";
 
 export function RegisterSW() {
   useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js");
+    if (
+      process.env.NODE_ENV === "production" &&
+      "serviceWorker" in navigator
+    ) {
+      navigator.serviceWorker.register("/sw.js").catch(() => {
+        // Silently fail if SW registration fails
+      });
     }
   }, []);
   return null;
