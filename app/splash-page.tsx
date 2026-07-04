@@ -16,6 +16,8 @@ const WISP_DIRS: WispDir[] = [
 
 const SPLASH_DURATION = 4000; // ms
 
+const EXIT_DURATION = 600; // ms — extended for smoother exit
+
 const SplashPage = () => {
   const router = useRouter();
   const [progress, setProgress] = useState(0);
@@ -35,10 +37,10 @@ const SplashPage = () => {
         rafId.current = requestAnimationFrame(tick);
       } else {
         setExiting(true);
-        // Small delay for exit animation to show, then navigate
+        // Allow exit animation to play, then navigate
         setTimeout(() => {
           router.replace("/login");
-        }, 400);
+        }, EXIT_DURATION);
       }
     };
 
@@ -54,29 +56,62 @@ const SplashPage = () => {
 
   return (
     <section
-      className={`relative flex flex-col items-center justify-center overflow-hidden transition-opacity duration-400 ${
-        exiting ? "opacity-0" : "opacity-100"
-      }`}
+      className="relative flex flex-col items-center justify-center overflow-hidden"
       style={{
         height: "100dvh",
         width: "100%",
         background: "#0D0906",
       }}
     >
+      {/* Background glow — intensifies briefly on exit, then fades */}
       <div
-        className="absolute rounded-full bg-[#EAA350] animate-glow-pulse"
+        className="absolute rounded-full bg-[#EAA350]"
         style={{
           width: "min(50vw, 320px)",
           height: "min(50vw, 320px)",
           filter: "blur(100px)",
           willChange: "transform, opacity",
+          animation: exiting
+            ? `splash-exit-glow ${EXIT_DURATION}ms ease-out forwards`
+            : "glow-pulse 3s ease-in-out infinite",
         }}
       />
 
-      <SplashContent visible={!exiting} />
+      {/* Logo — rises like steam on exit */}
+      <div
+        className="z-10"
+        style={{
+          animation: exiting
+            ? `splash-exit-logo ${EXIT_DURATION}ms ease-out forwards`
+            : "none",
+        }}
+      >
+        <SplashContent visible={!exiting} />
+      </div>
 
-      {/* Animated loading dots */}
-      <div className="absolute bottom-12 flex items-center gap-3 z-20">
+      {/* Tagline — slides upward on exit (full fade controlled by parent animation) */}
+      <div
+        className="z-10"
+        style={{
+          animation: exiting
+            ? `splash-exit-up ${EXIT_DURATION}ms 80ms ease-out forwards`
+            : "none",
+        }}
+      >
+        <span className="text-lg text-[#D8C2B4E5] leading-[160%] tracking-[0.45px]">
+          Network With a Sip!
+        </span>
+      </div>
+
+      {/* Animated loading dots — dissolve away on exit */}
+      <div
+        className="absolute bottom-12 flex items-center gap-3 z-20"
+        style={{
+          opacity: exiting ? 0 : 1,
+          transition: "opacity 0.25s ease-out",
+          transitionDelay: exiting ? "200ms" : "0ms",
+        }}
+      >
         {[0, 1, 2].map((i) => (
           <div
             key={i}
@@ -190,17 +225,6 @@ const SplashContent = ({ visible }: { visible: boolean }) => (
         CoffeeChat
       </h2>
     </div>
-
-    <span
-      className="text-lg text-[#D8C2B4E5] leading-[160%] tracking-[0.45px] animate-fade-slide-up"
-      style={{
-        animationDelay: "0.6s",
-        animationDuration: "0.7s",
-        animationFillMode: "backwards",
-      }}
-    >
-      Network With a Sip!
-    </span>
   </div>
 );
 
