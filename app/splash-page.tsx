@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 type WispDir = "left" | "right";
@@ -24,6 +24,43 @@ const SplashPage = () => {
   const [exiting, setExiting] = useState(false);
   const startTime = useRef<number | null>(null);
   const rafId = useRef<number>(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Robust autoplay: waits for canplay event, then calls play() with retry
+  const attemptPlay = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const tryPlay = () => {
+      const promise = video.play();
+      if (promise !== undefined) {
+        promise.catch(() => {
+          // Autoplay blocked — retry once after a short delay
+          setTimeout(() => {
+            video.play().catch(() => {
+              // Silently fail if still blocked
+            });
+          }, 500);
+        });
+      }
+    };
+
+    // If enough data is already loaded, play immediately
+    if (video.readyState >= 3) {
+      tryPlay();
+    } else {
+      // Otherwise wait for the canplay event
+      const onCanPlay = () => {
+        video.removeEventListener("canplay", onCanPlay);
+        tryPlay();
+      };
+      video.addEventListener("canplay", onCanPlay);
+    }
+  }, []);
+
+  useEffect(() => {
+    attemptPlay();
+  }, [attemptPlay]);
 
   useEffect(() => {
     startTime.current = performance.now();
@@ -86,7 +123,7 @@ const SplashPage = () => {
             : "none",
         }}
       >
-        <SplashContent visible={!exiting} />
+        <SplashContent visible={!exiting} videoRef={videoRef} />
       </div>
 
       {/* Tagline — slides upward on exit (full fade controlled by parent animation) */}
@@ -136,7 +173,13 @@ const SplashPage = () => {
   );
 };
 
-const SplashContent = ({ visible }: { visible: boolean }) => (
+const SplashContent = ({
+  visible,
+  videoRef,
+}: {
+  visible: boolean;
+  videoRef: React.RefObject<HTMLVideoElement | null>;
+}) => (
   <div
     className="flex flex-col gap-y-[12.8px] items-center z-10 transition-all duration-400"
     style={{
@@ -205,13 +248,16 @@ const SplashContent = ({ visible }: { visible: boolean }) => (
           style={{ animationDuration: "0.8s", animationFillMode: "backwards" }}
         >
           <video
-            src="/logo.mp4"
+            ref={videoRef}
             autoPlay
             muted
             loop
             playsInline
+            preload="auto"
             className="h-full w-full object-cover scale-[1.14] pointer-events-none"
-          />
+          >
+            <source src="/logo.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
       <h2

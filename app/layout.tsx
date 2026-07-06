@@ -28,12 +28,13 @@ export const metadata: Metadata = {
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-192.png", sizes: "180x180", type: "image/png" },
+      { url: "/icon-192.png", sizes: "152x152", type: "image/png" },
     ],
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    statusBarStyle: "black",
     title: "CoffeeChat",
   },
 };
@@ -44,7 +45,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: "cover",
-  themeColor: "#5C7A5C",
+  themeColor: "#0D0906",
 };
 
 export default function RootLayout({

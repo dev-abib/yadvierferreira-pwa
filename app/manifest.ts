@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Network with professionals over coffee.",
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#5C7A5C",
+    background_color: "#0D0906",
+    theme_color: "#0D0906",
     icons: [
       {
         src: "/icon-192.png",
