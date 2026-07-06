@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
-
 @theme {
   --color-primary-coffee: rgba(15, 10, 6, 0.95);
   --color-primary-bg: #0d0906;
   --color-transparent-gray: rgba(70, 70, 70, 0.5);
+  --color-primary-cream: #ede0ca;
+  --color-primary-black: #1a120b;
+  --color-primary-yellow: #eaa350;
+  --color-primary-gray: #8c7e6a;
 
   /* Container */
   --container-max-width: 1360px;
@@ -248,5 +251,12 @@
 
   body {
     padding-top: env(safe-area-inset-top);
+  }
+  .inp-label {
+    @apply text-xs font-bold leading-[125%] tracking-[1px] text-primary-gray;
+  }
+
+  .inp-style{
+    @apply p-4 rounded-2xl w-full bg-[#1B130C] text-[#5C4A3A] text-sm outline-none 
   }
 }

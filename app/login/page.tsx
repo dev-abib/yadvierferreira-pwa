@@ -10,6 +10,7 @@ import "swiper/css";
 import LoginCard from "../components/login/LoginCard";
 import AuthActions from "../components/layout/AuthActions";
 import AuthBottom from "../components/layout/AuthBottom";
+import { useRouter } from "next/navigation";
 
 const ENTRANCE_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -20,6 +21,7 @@ type Onbard = {
 
 const Page = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const router = useRouter();
 
   const slides: Onbard[] = useMemo(
     () => [
@@ -91,16 +93,18 @@ const Page = () => {
         </div>
       </div>
 
-       <div className="flex flex-col w-full gap-y-10">
-          <LoginCard>
-            <AuthActions
-              onGoogle={() => console.log("google")}
-              onApple={() => console.log("apple")}
-              onEmail={() => console.log("email")}
-            />
-          </LoginCard>
-          <AuthBottom />
-        </div>
+      <div className="flex flex-col w-full gap-y-10">
+        <LoginCard>
+          <AuthActions
+            onGoogle={() => console.log("google")}
+            onApple={() => console.log("apple")}
+            onEmail={() => {
+              router.push("/login/email");
+            }}
+          />
+        </LoginCard>
+        <AuthBottom />
+      </div>
     </section>
   );
 };

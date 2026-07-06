@@ -10,7 +10,7 @@ const BottomNav = dynamic(
   { ssr: false },
 );
 
-const HIDE_NAV_ROUTES = new Set(["/", "/login"]);
+const HIDE_NAV_ROUTES = new Set(["/", "/login", "/login/email"]);
 const AUTH_ROUTES = new Set(["/login"]);
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -21,9 +21,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <PwaInstallProvider>
       <div className="min-h-screen flex flex-col">
-        <main
-          className={`flex-1 w-full ${!hideNav ? "pb-20" : ""}`}
-        >
+        <main className={`flex-1 w-full ${!hideNav ? "pb-20" : ""}`}>
           {children}
         </main>
         {!hideNav && <BottomNav />}
