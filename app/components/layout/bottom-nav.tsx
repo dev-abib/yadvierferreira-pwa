@@ -16,8 +16,6 @@ export function BottomNav() {
   const pathname = usePathname();
   const { isStandalone, isIOS, triggerInstall } = usePwaInstall();
 
-  // On iOS, there's no native install API, and instruction modals are removed.
-  // Hide the install button on iOS since it would be non-functional.
   const canShowInstall = !isStandalone && !isIOS;
 
   return (

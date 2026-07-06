@@ -6,9 +6,11 @@ import img_three from "@/app/assets/img/login/img-three.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image, { type StaticImageData } from "next/image";
-
-// Swiper base CSS for proper DOM layout
 import "swiper/css";
+import LoginCard from "../components/login/LoginCard";
+import AuthActions from "../components/layout/AuthActions";
+import AuthBottom from "../components/layout/AuthBottom";
+
 
 const ENTRANCE_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -22,18 +24,12 @@ const Page = () => {
 
   const slides: Onbard[] = useMemo(
     () => [
-      {
-        image: img_one,
-        caption: "Network with professionals in your area,",
-      },
+      { image: img_one, caption: "Network with professionals in your area," },
       {
         image: img_two,
         caption: "Host Cafecito chats with friends or colleagues",
       },
-      {
-        image: img_three,
-        caption: "Gain industry insights with a sip!",
-      },
+      { image: img_three, caption: "Gain industry insights with a sip!" },
     ],
     [],
   );
@@ -41,15 +37,16 @@ const Page = () => {
   return (
     <section
       style={{
-        height: "100dvh",
+        minHeight: "100dvh",
         width: "100%",
-        background: `linear-gradient(0deg, #0D0906 0%, #0D0906 100%)`,
+        background: "#0D0906",
+        display: "flex",
+        flexDirection: "column",
       }}
-      className="relative flex flex-col"
+      className="relative pb-20"
     >
-      {/* Arrival glow */}
       <div
-        className="absolute top-[10%] left-1/2 -translate-x-1/2 rounded-full bg-[#EAA350] pointer-events-none"
+        className="absolute  top-[10%] left-1/2 -translate-x-1/2 rounded-full bg-[#EAA350] pointer-events-none"
         style={{
           width: "min(50vw, 300px)",
           height: "min(50vw, 300px)",
@@ -63,15 +60,19 @@ const Page = () => {
         style={{
           flex: 1,
           width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          paddingTop: 24,
           animation: `login-entrance-section 0.7s ${ENTRANCE_EASING} 0.1s both`,
         }}
-        className="flex items-center justify-center"
       >
         <Swiper
-          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          className="w-full h-full max-w-lg"
+          onSlideChange={swiper => setActiveIndex(swiper.activeIndex)}
+          className="w-full max-w-lg"
           direction="horizontal"
           centeredSlides
+          autoHeight
         >
           {slides.map((slide: Onbard, i: number) => (
             <SwiperSlide
@@ -81,7 +82,7 @@ const Page = () => {
               <div
                 className="relative w-full max-w-[280px] xs:max-w-sm sm:max-w-md md:max-w-lg mx-auto"
                 style={{
-                  aspectRatio: "4 / 3",
+                  aspectRatio: "16 / 9",
                   animation: `login-slide-entrance 0.5s ${ENTRANCE_EASING} ${0.15 + i * 0.1}s both`,
                 }}
               >
@@ -89,7 +90,7 @@ const Page = () => {
                   src={slide.image}
                   alt={slide.caption}
                   fill
-                  className="object-contain"
+                  className="object-cover h-[277px]"
                   sizes="(max-width: 480px) 280px, (max-width: 576px) 384px, (max-width: 768px) 448px, 512px"
                 />
               </div>
@@ -97,15 +98,16 @@ const Page = () => {
               <p
                 className="text-[#EDE0CA] text-center text-xl sm:text-2xl font-normal leading-[140%] tracking-[-0.7px] max-w-md"
                 style={{
-                  marginTop: "10px",
+                  marginTop: 10,
                   animation: `login-caption-entrance 0.5s ${ENTRANCE_EASING} ${0.25 + i * 0.1}s both`,
                 }}
               >
                 {slide.caption}
               </p>
+
               <div
                 className="flex items-center justify-center gap-2"
-                style={{ marginTop: "10px" }}
+                style={{ marginTop: 16, marginBottom: 16 }}
               >
                 {slides.map((_, dotIndex) => (
                   <div
@@ -116,6 +118,7 @@ const Page = () => {
                       height: 8,
                       backgroundColor:
                         dotIndex === activeIndex ? "#EAA350" : "#413B30",
+                      flexShrink: 0,
                     }}
                   />
                 ))}
@@ -123,6 +126,21 @@ const Page = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+
+      <div
+        style={{
+          animation: `login-caption-entrance 0.5s ${ENTRANCE_EASING} 0.5s both`,
+        }}
+      >
+        <LoginCard>
+          <AuthActions
+            onGoogle={() => console.log("google")}
+            onApple={() => console.log("apple")}
+            onEmail={() => console.log("email")}
+          />
+        </LoginCard>
+        {/* <AuthBottom/> */}
       </div>
     </section>
   );
