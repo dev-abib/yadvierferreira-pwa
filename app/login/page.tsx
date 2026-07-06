@@ -45,7 +45,7 @@ const Page = () => {
         width: "100%",
         background: `linear-gradient(0deg, #0D0906 0%, #0D0906 100%)`,
       }}
-      className="flex flex-col"
+      className="relative flex flex-col"
     >
       {/* Arrival glow */}
       <div
@@ -65,20 +65,23 @@ const Page = () => {
           width: "100%",
           animation: `login-entrance-section 0.7s ${ENTRANCE_EASING} 0.1s both`,
         }}
+        className="flex items-center justify-center"
       >
         <Swiper
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          className="w-full h-full"
+          className="w-full h-full max-w-lg"
           direction="horizontal"
+          centeredSlides
         >
           {slides.map((slide: Onbard, i: number) => (
             <SwiperSlide
               key={i}
-              className="flex flex-col items-center justify-center px-6"
+              className="flex flex-col items-center justify-center px-4 sm:px-6"
             >
               <div
-                className="relative w-full aspect-square max-w-sm"
+                className="relative w-full max-w-[280px] xs:max-w-sm sm:max-w-md md:max-w-lg mx-auto"
                 style={{
+                  aspectRatio: "4 / 3",
                   animation: `login-slide-entrance 0.5s ${ENTRANCE_EASING} ${0.15 + i * 0.1}s both`,
                 }}
               >
@@ -86,12 +89,13 @@ const Page = () => {
                   src={slide.image}
                   alt={slide.caption}
                   fill
-                  className="object-cover w-[349px] h-[277px] "
+                  className="object-contain"
+                  sizes="(max-width: 480px) 280px, (max-width: 576px) 384px, (max-width: 768px) 448px, 512px"
                 />
               </div>
 
               <p
-                className="text-[#EDE0CA] text-center text-2xl font-normal leaading-[140%] tracking-[-0.7px] "
+                className="text-[#EDE0CA] text-center text-xl sm:text-2xl font-normal leading-[140%] tracking-[-0.7px] max-w-md"
                 style={{
                   marginTop: "10px",
                   animation: `login-caption-entrance 0.5s ${ENTRANCE_EASING} ${0.25 + i * 0.1}s both`,

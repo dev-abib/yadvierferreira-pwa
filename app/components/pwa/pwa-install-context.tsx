@@ -6,6 +6,7 @@ import {
   useState,
   useCallback,
   useEffect,
+  useMemo,
   type ReactNode,
 } from "react";
 
@@ -19,16 +20,18 @@ interface PwaInstallState {
   deferredInstallEvent: InstallEvent | null;
   /** Whether beforeinstallprompt has fired */
   canInstall: boolean;
-  /** Whether the user is on iOS (needs Safari instructions) */
+  /** Whether the user is on iOS */
   isIOS: boolean;
   /** Whether already installed (standalone mode) */
   isStandalone: boolean;
   /** Whether on a desktop Chromium browser */
   isDesktopPwaCapable: boolean;
-  /** Attempt install: uses native dialog on Chromium, shows instructions on others */
+  /** Attempt install: uses native dialog on Chromium */
   triggerInstall: () => void;
-  /** Incremented each time instructions should be shown (for iOS/other browsers) */
-  instructionsRequested: number;
+}
+
+interface SafariNavigator extends Navigator {
+  standalone?: boolean;
 }
 
 const PwaInstallContext = createContext<PwaInstallState | null>(null);
@@ -38,34 +41,29 @@ export function PwaInstallProvider({ children }: { children: ReactNode }) {
     useState<InstallEvent | null>(null);
   const [canInstall, setCanInstall] = useState(false);
 
-  // Browser-detect state (set in useEffect to avoid SSR issues)
-  const [isIOS, setIsIOS] = useState(false);
-  const [isStandalone, setIsStandalone] = useState(false);
-  const [isDesktopPwaCapable, setIsDesktopPwaCapable] = useState(false);
-  const [instructionsRequested, setInstructionsRequested] = useState(0);
-
-  // ── Browser detection (runs once on mount — safe for SSR) ──
-  useEffect(() => {
+  // ── Browser detection (computed synchronously — no setState in effect) ──
+  const { isIOS, isStandalone, isDesktopPwaCapable } = useMemo(() => {
     const ua = navigator.userAgent;
 
-    setIsIOS(
-      /iPad|iPhone|iPod/.test(ua) && !("MSStream" in window),
-    );
+    const isIOS = /iPad|iPhone|iPod/.test(ua) && !("MSStream" in window);
 
-    setIsStandalone(
-      !!(window.navigator as any).standalone ||
-        window.matchMedia("(display-mode: standalone)").matches,
-    );
+    const isStandalone =
+      !!((window.navigator as SafariNavigator).standalone) ||
+      window.matchMedia("(display-mode: standalone)").matches;
 
     const isDesktopChrome =
       /Chrome/.test(ua) && !/Mobile|Android|iPad|iPhone|iPod/.test(ua);
     const isDesktopEdge =
       /Edg/.test(ua) && !/Mobile|Android|iPad|iPhone|iPod/.test(ua);
-    setIsDesktopPwaCapable(isDesktopChrome || isDesktopEdge);
+
+    return {
+      isIOS,
+      isStandalone,
+      isDesktopPwaCapable: isDesktopChrome || isDesktopEdge,
+    };
   }, []);
 
   // ── Capture beforeinstallprompt (Chrome/Chromium) ──
-  // We do NOT call e.preventDefault() so the native mini-infobar still appears.
   useEffect(() => {
     const handler = (e: Event) => {
       setCanInstall(true);
@@ -88,8 +86,8 @@ export function PwaInstallProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    // iOS / non-Chromium: bump counter so the banner component can react
-    setInstructionsRequested((n) => n + 1);
+    // On iOS / non-Chromium browsers without native install support,
+    // clicking install does nothing (no instruction modals shown).
   }, [deferredInstallEvent]);
 
   return (
@@ -101,7 +99,6 @@ export function PwaInstallProvider({ children }: { children: ReactNode }) {
         isStandalone,
         isDesktopPwaCapable,
         triggerInstall,
-        instructionsRequested,
       }}
     >
       {children}

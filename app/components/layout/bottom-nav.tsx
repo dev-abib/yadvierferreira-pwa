@@ -14,7 +14,11 @@ const navItems = [
 
 export function BottomNav() {
   const pathname = usePathname();
-  const { isStandalone, triggerInstall } = usePwaInstall();
+  const { isStandalone, isIOS, triggerInstall } = usePwaInstall();
+
+  // On iOS, there's no native install API, and instruction modals are removed.
+  // Hide the install button on iOS since it would be non-functional.
+  const canShowInstall = !isStandalone && !isIOS;
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 h-auto pb-[env(safe-area-inset-bottom)] bg-primary-coffee border-t border-gray-200">
@@ -43,8 +47,8 @@ export function BottomNav() {
           );
         })}
 
-        {/* ── Universal Install Button ── */}
-        {!isStandalone && (
+        {/* ── Install Button (hidden on iOS — no native install support) ── */}
+        {canShowInstall && (
           <button
             onClick={triggerInstall}
             className="flex flex-col items-center justify-center gap-1 flex-1 h-full"

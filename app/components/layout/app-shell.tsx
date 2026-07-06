@@ -9,11 +9,6 @@ const BottomNav = dynamic(
   { ssr: false }
 );
 
-const InstallBanner = dynamic(
-  () => import("../pwa/install-banner").then((mod) => mod.InstallBanner),
-  { ssr: false }
-);
-
 // Routes that should not show the bottom navigation bar
 const HIDE_NAV_ROUTES = new Set(["/", "/login"]);
 
@@ -28,7 +23,6 @@ export function AppShell({ children }: { children: ReactNode }) {
           {children}
         </main>
         {!hideNav && <BottomNav />}
-        <InstallBanner />
       </div>
     </PwaInstallProvider>
   );
