@@ -2,6 +2,7 @@
 import { ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
+import { PwaInstallProvider } from "../pwa/pwa-install-context";
 
 const BottomNav = dynamic(
   () => import("./bottom-nav").then((mod) => mod.BottomNav),
@@ -21,16 +22,14 @@ export function AppShell({ children }: { children: ReactNode }) {
   const hideNav = HIDE_NAV_ROUTES.has(pathName);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className={`flex-1 w-full ${!hideNav ? "pb-20" : ""}`}>
-        {children}
-      </main>
-      {!hideNav && (
-        <>
-          <BottomNav />
-          <InstallBanner />
-        </>
-      )}
-    </div>
+    <PwaInstallProvider>
+      <div className="min-h-screen flex flex-col">
+        <main className={`flex-1 w-full ${!hideNav ? "pb-20" : ""}`}>
+          {children}
+        </main>
+        {!hideNav && <BottomNav />}
+        <InstallBanner />
+      </div>
+    </PwaInstallProvider>
   );
 }
