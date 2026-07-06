@@ -34,41 +34,13 @@ const Page = () => {
   );
 
   return (
-    <section
-      style={{
-        minHeight: "100dvh",
-        width: "100%",
-        background: "#0D0906",
-        display: "flex",
-        flexDirection: "column",
-      }}
-      className="relative pb-20"
-    >
-      <div
-        className="absolute  top-[10%] left-1/2 -translate-x-1/2 rounded-full bg-[#EAA350] pointer-events-none"
-        style={{
-          width: "min(50vw, 300px)",
-          height: "min(50vw, 300px)",
-          filter: "blur(100px)",
-          willChange: "transform, opacity",
-          animation: "login-glow-arrive 1s ease-out 0.15s both",
-        }}
-      />
+    <section className="min-h-dvh w-full bg-[#0D0906] flex flex-col items-center justify-center  gap-y-10 ">
+      <div />
 
-      <div
-        style={{
-          flex: 1,
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          paddingTop: 24,
-          animation: `login-entrance-section 0.7s ${ENTRANCE_EASING} 0.1s both`,
-        }}
-      >
+      <div className="flex w-full relative flex-col items-center justify-center">
         <Swiper
           onSlideChange={swiper => setActiveIndex(swiper.activeIndex)}
-          className="w-full relative "
+          className="w-full relative"
           direction="horizontal"
           centeredSlides
           autoHeight
@@ -76,14 +48,14 @@ const Page = () => {
           {slides.map((slide: Onbard, i: number) => (
             <SwiperSlide
               key={i}
-              className="flex flex-col relative w-full items-center justify-center gap-y-2.5 "
+              className="!flex flex-col relative w-full items-center justify-center gap-y-2.5"
             >
-              <div className="w-full  relative bg-red-500">
+              <div className="w-full relative flex items-center justify-center">
                 <Image
                   src={slide.image}
-                  height={349}
-                  width={277}
-                  className="w-[349px] h-[277px] object-cover  "
+                  height={277}
+                  width={349}
+                  className="w-[349px] h-[277px] object-cover"
                   alt={"not found"}
                 />
               </div>
@@ -119,20 +91,16 @@ const Page = () => {
         </div>
       </div>
 
-      <div
-        style={{
-          animation: `login-caption-entrance 0.5s ${ENTRANCE_EASING} 0.5s both`,
-        }}
-      >
-        <LoginCard>
-          <AuthActions
-            onGoogle={() => console.log("google")}
-            onApple={() => console.log("apple")}
-            onEmail={() => console.log("email")}
-          />
-        </LoginCard>
-        {/* <AuthBottom/> */}
-      </div>
+       <div className="flex flex-col w-full gap-y-10">
+          <LoginCard>
+            <AuthActions
+              onGoogle={() => console.log("google")}
+              onApple={() => console.log("apple")}
+              onEmail={() => console.log("email")}
+            />
+          </LoginCard>
+          <AuthBottom />
+        </div>
     </section>
   );
 };

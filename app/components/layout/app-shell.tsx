@@ -22,7 +22,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <PwaInstallProvider>
       <div className="min-h-screen flex flex-col">
         <main
-          className={`flex-1 w-full ${!hideNav ? "pb-20" : ""} ${isAuth ? "pb-[72px]" : ""}`}
+          className={`flex-1 w-full ${!hideNav ? "pb-20" : ""}`}
         >
           {children}
         </main>

@@ -2,18 +2,15 @@ import Link from "next/link";
 
 const AuthBottom = () => {
   return (
-    <footer
+    <div
       style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        background: "rgba(13, 9, 6, 0.95)",
+        
+        background: "black",
         backdropFilter: "blur(8px)",
         WebkitBackdropFilter: "blur(8px)",
         borderTop: "1px solid rgba(216,194,180,0.1)",
       }}
+      className=""
     >
       <div className="max-w-lg mx-auto px-6 py-4 flex flex-col items-center gap-y-2">
         <p className="text-[11px] sm:text-xs text-[#D8C2B4]/40 font-normal">
@@ -35,7 +32,7 @@ const AuthBottom = () => {
           </Link>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
