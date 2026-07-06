@@ -6,7 +6,6 @@ import {
   useState,
   useCallback,
   useEffect,
-  useMemo,
   type ReactNode,
 } from "react";
 
@@ -41,8 +40,16 @@ export function PwaInstallProvider({ children }: { children: ReactNode }) {
     useState<InstallEvent | null>(null);
   const [canInstall, setCanInstall] = useState(false);
 
-  // ── Browser detection (computed synchronously — no setState in effect) ──
-  const { isIOS, isStandalone, isDesktopPwaCapable } = useMemo(() => {
+  // ── Browser detection (client‑only — runs once via lazy initialiser) ──
+  const [{ isIOS, isStandalone, isDesktopPwaCapable }] = useState(() => {
+    if (typeof window === "undefined") {
+      return {
+        isIOS: false,
+        isStandalone: false,
+        isDesktopPwaCapable: false,
+      };
+    }
+
     const ua = navigator.userAgent;
 
     const isIOS = /iPad|iPhone|iPod/.test(ua) && !("MSStream" in window);
@@ -61,7 +68,7 @@ export function PwaInstallProvider({ children }: { children: ReactNode }) {
       isStandalone,
       isDesktopPwaCapable: isDesktopChrome || isDesktopEdge,
     };
-  }, []);
+  });
 
   // ── Capture beforeinstallprompt (Chrome/Chromium) ──
   useEffect(() => {
