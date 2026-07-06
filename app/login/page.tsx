@@ -11,7 +11,6 @@ import LoginCard from "../components/login/LoginCard";
 import AuthActions from "../components/layout/AuthActions";
 import AuthBottom from "../components/layout/AuthBottom";
 
-
 const ENTRANCE_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 type Onbard = {
@@ -69,7 +68,7 @@ const Page = () => {
       >
         <Swiper
           onSlideChange={swiper => setActiveIndex(swiper.activeIndex)}
-          className="w-full max-w-lg"
+          className="w-full relative "
           direction="horizontal"
           centeredSlides
           autoHeight
@@ -77,26 +76,19 @@ const Page = () => {
           {slides.map((slide: Onbard, i: number) => (
             <SwiperSlide
               key={i}
-              className="flex flex-col items-center justify-center px-4 sm:px-6"
+              className="flex flex-col relative w-full items-center justify-center gap-y-2.5 "
             >
-              <div
-                className="relative w-full max-w-[280px] xs:max-w-sm sm:max-w-md md:max-w-lg mx-auto"
-                style={{
-                  aspectRatio: "16 / 9",
-                  animation: `login-slide-entrance 0.5s ${ENTRANCE_EASING} ${0.15 + i * 0.1}s both`,
-                }}
-              >
+              <div className="w-full  relative bg-red-500">
                 <Image
                   src={slide.image}
-                  alt={slide.caption}
-                  fill
-                  className="object-cover h-[277px]"
-                  sizes="(max-width: 480px) 280px, (max-width: 576px) 384px, (max-width: 768px) 448px, 512px"
+                  height={349}
+                  width={277}
+                  className="w-[349px] h-[277px] object-cover  "
+                  alt={"not found"}
                 />
               </div>
-
               <p
-                className="text-[#EDE0CA] text-center text-xl sm:text-2xl font-normal leading-[140%] tracking-[-0.7px] max-w-md"
+                className="text-[#EDE0CA] text-center text-2xl sm:text-2xl font-normal leading-[140%] tracking-[-0.7px] max-w-md"
                 style={{
                   marginTop: 10,
                   animation: `login-caption-entrance 0.5s ${ENTRANCE_EASING} ${0.25 + i * 0.1}s both`,
@@ -104,28 +96,27 @@ const Page = () => {
               >
                 {slide.caption}
               </p>
-
-              <div
-                className="flex items-center justify-center gap-2"
-                style={{ marginTop: 16, marginBottom: 16 }}
-              >
-                {slides.map((_, dotIndex) => (
-                  <div
-                    key={dotIndex}
-                    className="rounded-full transition-colors duration-200"
-                    style={{
-                      width: 8,
-                      height: 8,
-                      backgroundColor:
-                        dotIndex === activeIndex ? "#EAA350" : "#413B30",
-                      flexShrink: 0,
-                    }}
-                  />
-                ))}
-              </div>
             </SwiperSlide>
           ))}
         </Swiper>
+        <div
+          className="flex items-center justify-center gap-2"
+          style={{ marginTop: 16, marginBottom: 16 }}
+        >
+          {slides.map((_, dotIndex) => (
+            <div
+              key={dotIndex}
+              className="rounded-full transition-colors duration-200"
+              style={{
+                width: 8,
+                height: 8,
+                backgroundColor:
+                  dotIndex === activeIndex ? "#EAA350" : "#413B30",
+                flexShrink: 0,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div
