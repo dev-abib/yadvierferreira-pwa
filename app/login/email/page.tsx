@@ -5,7 +5,7 @@ import logo from "@/app/assets/img/coffee.png";
 
 const page = () => {
   return (
-    <section className="bg-black">
+    <section className="bg-black w-full h-dvh">
       <div className="container w-full relative flex flex-col justify-center pt-15 gap-y-[46px] items-center">
         <div className="flex flex-col w-full items-center justify-center relative  gap-y-15.75">
           <div className="flex flex-col gap-y-5 items-center ">
