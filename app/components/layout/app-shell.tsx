@@ -10,7 +10,12 @@ const BottomNav = dynamic(
   { ssr: false },
 );
 
-const HIDE_NAV_ROUTES = new Set(["/", "/login", "/login/email"]);
+const HIDE_NAV_ROUTES = new Set([
+  "/",
+  "/login",
+  "/login/email",
+  "/forgot-password",
+]);
 const AUTH_ROUTES = new Set(["/login"]);
 
 export function AppShell({ children }: { children: ReactNode }) {

@@ -256,7 +256,10 @@
     @apply text-xs font-bold leading-[125%] tracking-[1px] text-primary-gray;
   }
 
-  .inp-style{
-    @apply p-4 rounded-2xl w-full bg-[#1B130C] text-[#5C4A3A] text-sm outline-none 
+  .inp-style {
+    @apply p-4 rounded-2xl w-full bg-[#1B130C] text-[#5C4A3A] text-sm outline-none;
+  }
+  .primary-btn {
+    @apply text-primary-black text-lg leading-[150%] font-bold text-center bg-primary-yellow w-full py-4 rounded-2xl;
   }
 }

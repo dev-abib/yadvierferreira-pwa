@@ -10,7 +10,7 @@ const AuthBottom = () => {
         WebkitBackdropFilter: "blur(8px)",
         borderTop: "1px solid rgba(216,194,180,0.1)",
       }}
-      className=""
+      className="w-full"
     >
       <div className="max-w-lg mx-auto px-6 py-4 flex flex-col items-center gap-y-2">
         <p className="text-[11px] sm:text-xs text-[#D8C2B4]/40 font-normal">
