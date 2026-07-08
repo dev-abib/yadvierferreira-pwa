@@ -15,6 +15,7 @@ const HIDE_NAV_ROUTES = new Set([
   "/login",
   "/login/email",
   "/forgot-password",
+  "/reset-password",
   "/register",
 ]);
 const AUTH_ROUTES = new Set(["/login"]);
