@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { PwaInstallProvider } from "../pwa/pwa-install-context";
-import AuthBottom from "./AuthBottom";
 
 const BottomNav = dynamic(
   () => import("./bottom-nav").then(mod => mod.BottomNav),
@@ -17,6 +16,7 @@ const HIDE_NAV_ROUTES = new Set([
   "/forgot-password",
   "/reset-password",
   "/register",
+  "/verify-account",
 ]);
 const AUTH_ROUTES = new Set(["/login"]);
 
