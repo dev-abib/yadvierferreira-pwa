@@ -1,13 +1,17 @@
+"use client";
 import AuthBottom from "@/app/components/layout/AuthBottom";
 import Image from "next/image";
 import React from "react";
 import logo from "@/app/assets/img/coffee.png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
+  const router = useRouter();
+
   return (
-    <section className="bg-black w-full h-dvh">
-      <div className=" w-full relative flex flex-col justify-center pt-15 gap-y-[86px] items-center">
+    <section className="bg-black w-full min-h-dvh">
+      <div className=" w-full relative flex flex-col h-full pt-15 gap-y-10 justify-between items-center">
         <div className="flex flex-col w-full items-center justify-center relative  gap-y-15.75">
           <div className="flex flex-col gap-y-5 items-center ">
             <Image
@@ -22,7 +26,13 @@ const page = () => {
             </p>
           </div>
           <div className="flex flex-col max-w-[342px] w-full items-center  relative gap-y-5 ">
-            <form className="flex w-full  flex-col gap-y-[44px]">
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                router.push("/login/email");
+              }}
+              className="flex w-full  flex-col gap-y-[44px]"
+            >
               <div className="flex flex-col gap-y-3 ">
                 <span className=" inp-label ">Enter new Password</span>
                 <input
@@ -39,7 +49,9 @@ const page = () => {
                   className="inp-style"
                 />
               </div>
-              <button className="primary-btn  ">Login</button>
+              <button type="submit" className="primary-btn  ">
+                Reset Password
+              </button>
             </form>
             <div className="flex flex-row items-center w-full relative gap-x-4">
               <span className="w-[48%] h-[1px] bg-[#D8C2B480] "></span>
@@ -49,9 +61,8 @@ const page = () => {
               <span className="w-[48%] h-[1px] leading-[100%] tracking-[2px] bg-[#D8C2B480] "></span>
             </div>
             <p className="text-xs font-medium cursor-pointer leading-[100%]  tracking-[0.06px] text-primary-cream opacity-50  ">
-              You have an account ?{" "}
               <Link className="underline" href={"/login/email"}>
-                Reset Password
+                Back to Login
               </Link>
             </p>
           </div>
@@ -62,4 +73,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

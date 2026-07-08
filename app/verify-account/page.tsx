@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import AuthBottom from "@/app/components/layout/AuthBottom";
 import Image from "next/image";
 import React from "react";
@@ -6,12 +6,14 @@ import logo from "@/app/assets/img/coffee.png";
 import Link from "next/link";
 import OtpInput from "react-otp-input";
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 const RESEND_COOLDOWN = 30;
 
 const Page = () => {
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(RESEND_COOLDOWN);
+  const router = useRouter();
 
   useEffect(() => {
     if (timer <= 0) return;
@@ -38,11 +40,17 @@ const Page = () => {
               className="w-[86px] h-[84px] object-cover "
             />
             <p className="text-[#EDE0CA] text-center text-2xl font-medium leading-[33px] tracking-[-0.7px]">
-              Reset Password
+              Verify account
             </p>
           </div>
           <div className="flex flex-col max-w-[342px] w-full items-center  relative gap-y-5 ">
-            <form className="flex w-full  flex-col gap-y-[44px]">
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                router.push("/login");
+              }}
+              className="flex w-full  flex-col gap-y-[44px]"
+            >
               <div className="flex flex-col gap-y-8">
                 <div className="flex flex-col gap-y-3">
                   <span className="inp-label">OTP Code</span>
@@ -61,13 +69,9 @@ const Page = () => {
                 </div>
                 <button
                   type="button"
-                  onClick={handleResend}
-                  disabled={timer > 0}
                   className={`text-xs font-medium leading-[100%] tracking-[0.06px] text-center w-full transition-all duration-200 ${timer > 0 ? "text-[#5C4A3A] cursor-not-allowed" : "text-primary-cream opacity-60 hover:opacity-100 underline cursor-pointer"}`}
                 >
-                  {timer > 0
-                    ? `Resend code in ${timer}s`
-                    : "Resend code"}
+                  {timer > 0 ? `Resend code in ${timer}s` : "Resend code"}
                 </button>
               </div>
               <button className="primary-btn  ">Verify</button>
@@ -80,9 +84,8 @@ const Page = () => {
               <span className="w-[48%] h-[1px] leading-[100%] tracking-[2px] bg-[#D8C2B480] "></span>
             </div>
             <p className="text-xs font-medium cursor-pointer leading-[100%]  tracking-[0.06px] text-primary-cream opacity-50  ">
-              You have an account ?{" "}
               <Link className="underline" href={"/login/email"}>
-                Reset Password
+                Back to Login
               </Link>
             </p>
           </div>
