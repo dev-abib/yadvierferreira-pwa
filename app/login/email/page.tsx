@@ -10,7 +10,7 @@ const Page = () => {
   const router = useRouter();
   return (
     <section className="bg-black w-full min-h-dvh">
-      <div className=" w-full relative flex flex-col h-full pt-15 gap-y-10 justify-between items-center">
+      <div className=" w-full relative flex flex-col min-h-dvh pt-15 gap-y-10 justify-between items-center">
         <div className="flex flex-col w-full items-center justify-center relative  gap-y-15.75">
           <div className="flex flex-col gap-y-5 items-center ">
             <Image
