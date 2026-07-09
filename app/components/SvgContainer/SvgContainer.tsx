@@ -14,3 +14,180 @@ export const Coffee = () => {
     </svg>
   );
 };
+
+export const Brewie = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M8.33333 1.66669V3.33335"
+        stroke="#EAA350"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M11.6667 1.66669V3.33335"
+        stroke="#EAA350"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13.3333 6.66669C13.7936 6.66669 14.1667 7.03978 14.1667 7.50002V14.1667C14.1667 16.0076 12.6743 17.5 10.8333 17.5H5.83333C3.99238 17.5 2.5 16.0076 2.5 14.1667V7.50002C2.5 7.03978 2.8731 6.66669 3.33333 6.66669H13.3333V6.66669"
+        stroke="#EAA350"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M14.1667 10H15.8333C16.7538 10 17.5 10.7462 17.5 11.6667V12.5C17.5 13.4205 16.7538 14.1667 15.8333 14.1667H14.1667"
+        stroke="#EAA350"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M5 1.66669V3.33335"
+        stroke="#EAA350"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const Calender = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M4.16667 3.33331H15.8333C16.7538 3.33331 17.5 4.07951 17.5 4.99998V16.6666C17.5 17.5871 16.7538 18.3333 15.8333 18.3333H4.16667C3.24619 18.3333 2.5 17.5871 2.5 16.6666V4.99998C2.5 4.07951 3.24619 3.33331 4.16667 3.33331V3.33331"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13.3333 1.66669V5.00002"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.66666 1.66669V5.00002"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M2.5 8.33331H17.5"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const Map = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M16.6667 8.33335C16.6667 13.3334 9.99999 18.3334 9.99999 18.3334C9.99999 18.3334 3.33333 13.3334 3.33333 8.33335C3.33333 4.65392 6.32056 1.66669 9.99999 1.66669C13.6794 1.66669 16.6667 4.65392 16.6667 8.33335V8.33335"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M7.5 8.33331C7.5 9.7131 8.62021 10.8333 10 10.8333C11.3798 10.8333 12.5 9.7131 12.5 8.33331C12.5 6.95353 11.3798 5.83331 10 5.83331C8.62021 5.83331 7.5 6.95353 7.5 8.33331V8.33331"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const Network = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M13.3333 17.5V15.8333C13.3333 13.9924 11.8409 12.5 9.99999 12.5H4.99999C3.15904 12.5 1.66666 13.9924 1.66666 15.8333V17.5"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M4.16666 5.83333C4.16666 7.67305 5.66027 9.16667 7.49999 9.16667C9.33971 9.16667 10.8333 7.67305 10.8333 5.83333C10.8333 3.99362 9.33971 2.5 7.49999 2.5C5.66027 2.5 4.16666 3.99362 4.16666 5.83333V5.83333"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M18.3333 17.5V15.8333C18.3322 14.3143 17.3042 12.9881 15.8333 12.6083"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13.3333 2.60834C14.8083 2.98598 15.8399 4.315 15.8399 5.8375C15.8399 7.36001 14.8083 8.68903 13.3333 9.06667"
+        stroke="#7A6B5D"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const Profile = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M16 7C16 9.20766 14.2077 11 12 11C9.79234 11 8 9.20766 8 7C8 4.79234 9.79234 3 12 3C14.2077 3 16 4.79234 16 7V7M12 14C8.13659 14 5 17.1366 5 21H19C19 17.1366 15.8634 14 12 14V14"
+        stroke="#7A6B5D"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};

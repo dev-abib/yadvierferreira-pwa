@@ -30,6 +30,23 @@
   --breakpoint-2xl: 1280px;
   --breakpoint-3xl: 1440px;
   --breakpoint-4xl: 1760px;
+
+  /* Brewie chatbot theme colors */
+  --color-bg: #100D0A;
+  --color-bg-glow: #3A2214;
+  --color-card: #1B1712;
+  --color-card-border: rgba(255,255,255,0.06);
+  --color-pill: #1E1A15;
+  --color-pill-border: rgba(255,255,255,0.09);
+  --color-accent: #E8964C;
+  --color-accent-light: #F3AE72;
+  --color-accent-dark: #C97A38;
+  --color-text-primary: #F4EFE7;
+  --color-text-secondary: #9A9187;
+  --color-text-tertiary: #6E665D;
+  --color-online: #4ADE80;
+  --radius-bubble: 20px;
+  --radius-pill: 999px;
 }
 
 @layer components {
@@ -262,4 +279,55 @@
   .primary-btn {
     @apply text-primary-black text-lg leading-[150%] font-bold text-center bg-primary-yellow w-full py-4 rounded-2xl;
   }
+}
+
+html,
+body {
+  height: 100%;
+  background: #100d0a;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* Radial warm glow behind the header, matching the screenshot's top vignette */
+.app-glow {
+  background:
+    radial-gradient(
+      120% 60% at 50% 0%,
+      rgba(232, 150, 76, 0.16) 0%,
+      rgba(232, 150, 76, 0) 60%
+    ),
+    #100d0a;
+}
+
+/* Hide scrollbar but keep scroll behavior for the chat thread */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msg-enter {
+  animation: fade-in-up 0.28s ease-out both;
+}
+
+:focus-visible {
+  outline: 2px solid #e8964c;
+  outline-offset: 2px;
 }

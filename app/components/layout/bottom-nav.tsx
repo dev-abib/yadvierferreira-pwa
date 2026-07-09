@@ -2,14 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, Bell, User, Download } from "lucide-react";
 import { usePwaInstall } from "../pwa/pwa-install-context";
+import {
+  Brewie,
+  Calender,
+  Map,
+  Network,
+  Profile,
+} from "../SvgContainer/SvgContainer";
 
 const navItems = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/search", label: "Search", icon: Search },
-  { href: "/notifications", label: "Alerts", icon: Bell },
-  { href: "/profile", label: "Profile", icon: User },
+  { href: "/", label: "Brewie", icon: Brewie },
+  { href: "/search", label: "Calender", icon: Calender },
+  { href: "/notifications", label: "Map", icon: Map },
+  { href: "/profile", label: "Network", icon: Network },
+  { href: "/profile", label: "Profile", icon: Profile },
 ];
 
 export function BottomNav() {
@@ -29,11 +36,7 @@ export function BottomNav() {
               href={href}
               className="flex flex-col items-center justify-center gap-1 flex-1 h-full"
             >
-              <Icon
-                size={22}
-                strokeWidth={isActive ? 2.5 : 1.8}
-                className={isActive ? "text-[#5C7A5C]" : "text-gray-400"}
-              />
+              <Icon />
               <span
                 className={`text-[10px] ${
                   isActive ? "text-[#5C7A5C] font-medium" : "text-gray-400"
@@ -45,23 +48,6 @@ export function BottomNav() {
           );
         })}
 
-        {/* ── Install Button (hidden on iOS — no native install support) ── */}
-        {canShowInstall && (
-          <button
-            onClick={triggerInstall}
-            className="flex flex-col items-center justify-center gap-1 flex-1 h-full"
-            aria-label="Install CoffeeChat"
-          >
-            <Download
-              size={22}
-              strokeWidth={1.8}
-              className="text-gray-400 transition-colors hover:text-[#EAA350]"
-            />
-            <span className="text-[10px] text-gray-400">
-              Install
-            </span>
-          </button>
-        )}
       </div>
     </nav>
   );
