@@ -131,24 +131,26 @@ export default function Home() {
   }
 
   return (
-    <div className="app-glow flex h-[91dvh] flex-col">
+    <div className="app-glow flex h-dvh flex-col overflow-hidden">
       <RegisterSW />
       <ChatHeader />
       <div
         ref={scrollRef}
-        className="no-scrollbar flex-1 space-y-4 overflow-y-auto pb-4"
+        className="no-scrollbar min-h-0 flex-1 overflow-y-auto"
       >
-        {turns.map(turn =>
-          turn.type === "message" ? (
-            <MessageBubble key={turn.message.id} message={turn.message} />
-          ) : (
-            <QuickReplies
-              key={turn.id}
-              options={turn.options}
-              onSelect={option => handleQuickReply(option)}
-            />
-          ),
-        )}
+        <div className="space-y-4 pb-4">
+          {turns.map(turn =>
+            turn.type === "message" ? (
+              <MessageBubble key={turn.message.id} message={turn.message} />
+            ) : (
+              <QuickReplies
+                key={turn.id}
+                options={turn.options}
+                onSelect={option => handleQuickReply(option)}
+              />
+            ),
+          )}
+        </div>
       </div>
       <ChatInput onSend={handleSend} />
     </div>
