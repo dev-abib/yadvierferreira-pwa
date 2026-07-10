@@ -35,7 +35,7 @@ const people: Person[] = [
   {
     id: "1",
     initials: "DC",
-    avatarColor: "bg-rose-800",
+    avatarColor: "bg-[#C2793A]/40",
     onlineDotColor: "bg-emerald-400",
     name: "Daniela Cruz",
     badge: { label: "Nearby", color: "text-emerald-400" },
@@ -48,7 +48,7 @@ const people: Person[] = [
   {
     id: "2",
     initials: "MR",
-    avatarColor: "bg-emerald-800",
+    avatarColor: "bg-[#243B2A]",
     onlineDotColor: "bg-orange-500",
     name: "Marcus Reyes",
     title: "Staff Software Engineer",
@@ -60,7 +60,7 @@ const people: Person[] = [
   {
     id: "3",
     initials: "SL",
-    avatarColor: "bg-blue-900",
+    avatarColor: "bg-[#243B2A]",
     onlineDotColor: "bg-emerald-400",
     name: "Sofia Lin",
     badge: { label: "Nearby", color: "text-emerald-400" },
@@ -73,7 +73,7 @@ const people: Person[] = [
   {
     id: "4",
     initials: "KP",
-    avatarColor: "bg-purple-800",
+    avatarColor: "bg-[#C2793A]/40",
     onlineDotColor: "bg-orange-500",
     name: "Kevin Park",
     title: "Product Designer",
@@ -85,7 +85,7 @@ const people: Person[] = [
   {
     id: "5",
     initials: "AJ",
-    avatarColor: "bg-emerald-900",
+    avatarColor: "bg-[#243B2A]",
     onlineDotColor: "bg-orange-500",
     name: "Aisha Johnson",
     badge: { label: "★", color: "text-primary-yellow" },
