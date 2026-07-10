@@ -1,85 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Search, Users } from "lucide-react";
-
-interface Message {
-  id: string;
-  initials: string;
-  avatarColor: string;
-  onlineDotColor: string;
-  name: string;
-  nearby?: boolean;
-  preview: string;
-  time: string;
-  unread?: boolean;
-}
-
-const messages: Message[] = [
-  {
-    id: "1",
-    initials: "DC",
-    avatarColor: "bg-[#C2793A]/40",
-    onlineDotColor: "bg-emerald-400",
-    name: "Daniela Cruz",
-    preview: "Let's go outside of the city for a cup of coffee",
-    time: "2 hr",
-    unread: true,
-  },
-  {
-    id: "2",
-    initials: "MR",
-    avatarColor: "bg-[#243B2A]",
-    onlineDotColor: "bg-orange-500",
-    name: "Daniela Cruz",
-    preview: "Senior Marketing Manager · Delo...",
-    time: "1 day",
-  },
-  {
-    id: "3",
-    initials: "DC",
-    avatarColor: "bg-[#C2793A]/40",
-    onlineDotColor: "bg-emerald-400",
-    name: "Daniela Cruz",
-    nearby: true,
-    preview: "Senior Marketing Manager · Delo...",
-    time: "1 day",
-  },
-  {
-    id: "4",
-    initials: "DC",
-    avatarColor: "bg-[#C2793A]/40",
-    onlineDotColor: "bg-emerald-400",
-    name: "Daniela Cruz",
-    nearby: true,
-    preview: "Senior Marketing Manager · Delo...",
-    time: "1 day",
-  },
-  {
-    id: "5",
-    initials: "AJ",
-    avatarColor: "bg-[#243B2A]",
-    onlineDotColor: "bg-orange-500",
-    name: "Aisha Johnson",
-    preview: "Senior Marketing Manager · Delo...",
-    time: "1 day",
-  },
-  {
-    id: "6",
-    initials: "AJ",
-    avatarColor: "bg-[#243B2A]",
-    onlineDotColor: "bg-orange-500",
-    name: "Aisha Johnson",
-    preview: "Senior Marketing Manager · Delo...",
-    time: "1 day",
-  },
-];
+import { conversations } from "@/public/lib/conversation";
 
 export default function Page() {
   const [query, setQuery] = useState("");
 
-  const filtered = messages.filter(m =>
-    m.name.toLowerCase().includes(query.toLowerCase()),
+  const filtered = conversations.filter(c =>
+    c.name.toLowerCase().includes(query.toLowerCase()),
   );
 
   return (
@@ -110,22 +40,23 @@ export default function Page() {
 
       <div className="flex-1 overflow-y-auto mt-4 -mx-1 px-1">
         <div className="flex flex-col divide-y divide-pill-border">
-          {filtered.map(msg => (
-            <button
-              key={msg.id}
+          {filtered.map(c => (
+            <Link
+              key={c.id}
+              href={`/message/${c.id}`}
               className="flex items-start gap-3 py-4 text-left w-full"
             >
               {/* Avatar */}
               <div className="relative shrink-0">
                 <div
-                  className={`h-16 w-16 rounded-2xl ${msg.avatarColor} flex items-center justify-center`}
+                  className={`h-16 w-16 rounded-2xl ${c.avatarColor} flex items-center justify-center`}
                 >
                   <span className="text-white text-xl font-bold">
-                    {msg.initials}
+                    {c.initials}
                   </span>
                 </div>
                 <span
-                  className={`absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full ${msg.onlineDotColor} border-2 border-black`}
+                  className={`absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full ${c.onlineDotColor} border-2 border-black`}
                 />
               </div>
 
@@ -134,14 +65,14 @@ export default function Page() {
                 <div className="flex items-center gap-1.5">
                   <h4
                     className={`text-[15px] truncate ${
-                      msg.unread
+                      c.unread
                         ? "text-white font-bold"
                         : "text-white font-semibold"
                     }`}
                   >
-                    {msg.name}
+                    {c.name}
                   </h4>
-                  {msg.nearby && (
+                  {c.nearby && (
                     <span className="text-emerald-400 text-[11px] font-medium shrink-0">
                       · Nearby
                     </span>
@@ -149,18 +80,18 @@ export default function Page() {
                 </div>
                 <p
                   className={`text-xs mt-1 truncate ${
-                    msg.unread ? "text-white/70" : "text-white/40"
+                    c.unread ? "text-white/70" : "text-white/40"
                   }`}
                 >
-                  {msg.preview}
+                  {c.preview}
                 </p>
               </div>
 
               {/* Time */}
               <span className="text-white/30 text-[11px] shrink-0 pt-0.5">
-                {msg.time}
+                {c.time}
               </span>
-            </button>
+            </Link>
           ))}
         </div>
       </div>
