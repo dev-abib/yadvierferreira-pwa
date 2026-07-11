@@ -26,7 +26,7 @@ export default function Page() {
             Request Coffee
           </h2>
         </div>
-        <Link href="/proposal-request">
+        <Link href="/schedule">
           <div className="h-10 w-10 rounded-xl flex justify-center items-center shadow-lg shadow-black border border-pill-border bg-pill cursor-pointer shrink-0">
             <Calendar className="text-primary-yellow" size={18} />
           </div>
