@@ -80,7 +80,7 @@ export default function CoffeeChatModal({
   if (!rendered) return null;
 
   return (
-    <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center">
+    <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center">
       {/* Overlay */}
       <button
         type="button"
@@ -99,9 +99,9 @@ export default function CoffeeChatModal({
           transform: mounted ? "translateY(0)" : "translateY(100%)",
           opacity: mounted ? 1 : 0,
           transition: `transform ${ANIM_DURATION}ms ${ANIM_EASE}, opacity ${ANIM_DURATION}ms ${ANIM_EASE}`,
-          maxHeight: "calc(100dvh - 24px)",
+          // maxHeight: "calc(100dvh - 24px)",
         }}
-        className="relative w-full sm:max-w-md mx-0 sm:mx-4 rounded-t-3xl sm:rounded-3xl border-t sm:border border-pill-border bg-primary-bg shadow-2xl flex flex-col"
+        className="relative w-full h-full max-h-full sm:max-w-md mx-0 sm:mx-4 rounded-t-3xl sm:rounded-3xl border-t sm:border border-pill-border bg-primary-bg shadow-2xl flex flex-col"
       >
         {/* Header with close */}
         <div className="flex items-center justify-between px-5 pt-3 pb-1 shrink-0">
@@ -118,7 +118,7 @@ export default function CoffeeChatModal({
 
         {/* Scrollable content */}
         <div
-          className="px-5 overflow-y-auto overscroll-contain"
+          className="px-5 overflow-y-auto overscroll-contain flex-1 min-h-0"
           style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
         >
           <ProposeCoffeeChatModal

@@ -177,7 +177,7 @@ export default function VenueDetailDrawer({
     : "translateY(100%)";
 
   return (
-    <div className="fixed inset-0 z-9999 flex items-end">
+    <div className="fixed inset-0 z-[9999] flex items-end">
       {/* Overlay */}
       <button
         type="button"
@@ -196,7 +196,7 @@ export default function VenueDetailDrawer({
           transition: isDragging
             ? "none"
             : `transform ${ANIM_DURATION}ms ${ANIM_EASE}`,
-          maxHeight: "calc(100dvh - 24px)",
+          // maxHeight: "calc(100dvh - 24px)",
         }}
         className="relative w-full flex flex-col rounded-t-3xl border-t border-pill-border bg-primary-bg shadow-2xl"
       >
@@ -228,7 +228,7 @@ export default function VenueDetailDrawer({
         </div>
 
         <div
-          className="px-5 overflow-y-auto overscroll-contain"
+          className="px-5 overflow-y-auto overscroll-contain flex-1 min-h-0"
           style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
         >
           {/* Venue header */}

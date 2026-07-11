@@ -27,7 +27,13 @@ function Stars({ rating }: { rating: number }) {
 
 /* ── Shop content (rich) ── */
 
-function ShopContent({ shop, onCoffeeChat }: { shop: ShopDetail; onCoffeeChat?: (name: string) => void }) {
+function ShopContent({
+  shop,
+  onCoffeeChat,
+}: {
+  shop: ShopDetail;
+  onCoffeeChat?: (name: string) => void;
+}) {
   return (
     <>
       <div className="flex items-center gap-3">
@@ -124,7 +130,13 @@ function ShopContent({ shop, onCoffeeChat }: { shop: ShopDetail; onCoffeeChat?: 
 
 /* ── Person content ── */
 
-function PersonContent({ person, onCoffeeChat }: { person: PersonDetail; onCoffeeChat?: (name: string) => void }) {
+function PersonContent({
+  person,
+  onCoffeeChat,
+}: {
+  person: PersonDetail;
+  onCoffeeChat?: (name: string) => void;
+}) {
   return (
     <>
       <div className="flex items-center gap-3">
@@ -360,7 +372,7 @@ export default function VenueDetailSheet({
         </div>
 
         <div
-          className="px-5 overflow-y-auto overscroll-contain"
+          className="px-5 overflow-y-auto overscroll-contain flex-1 min-h-0"
           style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
         >
           {detail.kind === "shop" ? (
