@@ -98,8 +98,8 @@ const Page = () => {
       <div className="w-full">
         <LoginCard>
           <AuthActions
-            onGoogle={() => console.log("google")}
-            onApple={() => console.log("apple")}
+            onGoogle={() => router.push("/brewie")}
+            onApple={() => router.push("/brewie")}
             onEmail={() => {
               router.push("/login/email");
             }}
