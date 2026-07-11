@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Pencil, QrCode, Check, X } from "lucide-react";
+import QRCodeModal from "@/app/components/profile/QRCodeModal";
 
 export default function ProfileAvatar() {
   const [name, setName] = useState("Mahamudul Hasan");
@@ -51,8 +52,11 @@ export default function ProfileAvatar() {
     setEditingTitle(false);
   };
 
+  const [showQR, setShowQR] = useState(false);
+
   return (
-    <div className="flex flex-col items-center mt-6">
+    <>
+      <div className="flex flex-col items-center mt-6">
       {/* Avatar with photo upload */}
       <div className="relative">
         <div className="h-24 w-24 rounded-2xl bg-[#8A5A3B] flex items-center justify-center overflow-hidden">
@@ -180,10 +184,21 @@ export default function ProfileAvatar() {
       </div>
 
       {/* QR Code button */}
-      <button className="flex items-center justify-center gap-2 mt-5 w-full py-3 rounded-xl border border-pill-border bg-pill text-white text-sm font-semibold cursor-pointer hover:bg-white/5 transition-colors">
+      <button
+        onClick={() => setShowQR(true)}
+        className="flex items-center justify-center gap-2 mt-5 w-full py-3 rounded-xl border border-pill-border bg-pill text-white text-sm font-semibold cursor-pointer hover:bg-white/5 transition-colors"
+      >
         <QrCode size={15} className="text-primary-yellow" />
         Show My QR Code
       </button>
     </div>
+
+    <QRCodeModal
+      open={showQR}
+      onClose={() => setShowQR(false)}
+      name={name}
+      title={title}
+    />
+    </>
   );
 }

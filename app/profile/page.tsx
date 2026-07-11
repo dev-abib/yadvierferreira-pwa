@@ -1,12 +1,12 @@
 "use client";
 
+import ProfileStats from "@/app/components/profile/ProfileStats";
 import ProfileHeader from "@/app/components/profile/ProfileHeader";
 import ProfileAvatar from "@/app/components/profile/ProfileAvatar";
-import ProfileStats from "@/app/components/profile/ProfileStats";
-import ProfileCoffeeSection from "@/app/components/profile/ProfileCoffeeSection";
 import ProfileBioSection from "@/app/components/profile/ProfileBioSection";
-import ProfileIndustrySection from "@/app/components/profile/ProfileIndustrySection";
+import ProfileCoffeeSection from "@/app/components/profile/ProfileCoffeeSection";
 import ProfileCampusSection from "@/app/components/profile/ProfileCampusSection";
+import ProfileIndustrySection from "@/app/components/profile/ProfileIndustrySection";
 import ProfilePortfolioSection from "@/app/components/profile/ProfilePortfolioSection";
 
 export default function Page() {
