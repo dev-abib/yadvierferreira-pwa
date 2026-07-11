@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 import { Search, Users } from "lucide-react";
 import { conversations } from "@/public/lib/conversation";
 

@@ -112,7 +112,7 @@ export default function Page() {
             }`}
           >
             <div
-              className={`max-w-[80%] min-w-0 rounded-2xl px-4 py-3.5 text-base font-dm-sans leading-relaxed font-normal capitalize whitespace-normal break-words ${
+              className={`max-w-[80%] min-w-0 rounded-2xl px-4 py-3.5 text-base font-dm-sans leading-relaxed font-normal capitalize whitespace-normal wrap-break-word ${
                 msg.sender === "me"
                   ? "bg-primary-yellow text-black rounded-br-md"
                   : "bg-pill border border-pill-border text-white rounded-bl-md"
