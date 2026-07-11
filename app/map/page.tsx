@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Search, Coffee } from "lucide-react";
 import VenueDetailDrawer from "../components/map/VenueDetailDrawer";
 import VenueDetailSheet from "../components/map/VenueDetailSheet";
+import CoffeeChatModal from "../components/map/CoffeeChatModal";
 import FilterSelect from "../components/map/FilterSelect";
 import VenueCard from "../components/map/VenueCard";
 import { filterOptions, pins, venues } from "../components/map/map-data";
@@ -18,6 +19,7 @@ export default function Page() {
   >({});
   const [drawerVenueId, setDrawerVenueId] = useState<string | null>(null);
   const [detailSheetId, setDetailSheetId] = useState<string | null>(null);
+  const [coffeeChatVenue, setCoffeeChatVenue] = useState<string | null>(null);
 
   const handleFilterChange = (id: FilterKey, value: string) => {
     setSelectedFilters(prev => ({ ...prev, [id]: value }));
@@ -39,6 +41,23 @@ export default function Page() {
   const closeDetailSheet = () => {
     setDetailSheetId(null);
   };
+
+  const openCoffeeChat = useCallback((venueName: string) => {
+    setCoffeeChatVenue(venueName);
+  }, []);
+
+  const closeCoffeeChat = useCallback(() => {
+    setCoffeeChatVenue(null);
+  }, []);
+
+  const handleCoffeeChatSubmit = useCallback((data: {
+    time: string;
+    proposeTo: string;
+    agenda: string;
+  }) => {
+    console.log("Coffee chat proposed:", data);
+    setCoffeeChatVenue(null);
+  }, []);
 
   return (
     <div className="app-glow flex flex-col px-5 pt-6 pb-4">
@@ -136,6 +155,7 @@ export default function Page() {
         venueId={drawerVenueId}
         onClose={closeDrawer}
         onViewDetails={openDetailSheet}
+        onCoffeeChat={openCoffeeChat}
       />
 
       {/* Rich venue detail sheet */}
@@ -143,6 +163,15 @@ export default function Page() {
         open={detailSheetId !== null}
         id={detailSheetId}
         onClose={closeDetailSheet}
+        onCoffeeChat={openCoffeeChat}
+      />
+
+      {/* Coffee Chat Modal */}
+      <CoffeeChatModal
+        open={coffeeChatVenue !== null}
+        venueName={coffeeChatVenue ?? ""}
+        onClose={closeCoffeeChat}
+        onSubmit={handleCoffeeChatSubmit}
       />
     </div>
   );

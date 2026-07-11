@@ -60,6 +60,7 @@ interface VenueDetailDrawerProps {
   venueId: string | null;
   onClose: () => void;
   onViewDetails?: (id: string) => void;
+  onCoffeeChat?: (venueName: string) => void;
 }
 
 const ANIM_DURATION = 320;
@@ -73,6 +74,7 @@ export default function VenueDetailDrawer({
   venueId,
   onClose,
   onViewDetails,
+  onCoffeeChat,
 }: VenueDetailDrawerProps) {
   const startY = useRef(0);
   const dragStartTranslate = useRef(0);
@@ -276,6 +278,7 @@ export default function VenueDetailDrawer({
           {/* Request button */}
           <button
             type="button"
+            onClick={() => onCoffeeChat?.(venue.name)}
             className="w-full py-4 rounded-2xl bg-primary-yellow text-black font-bold text-base cursor-pointer transition-all duration-200 hover:bg-primary-yellow/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary-yellow/20 active:translate-y-0 active:scale-[0.98]"
           >
             Request Coffee Chat

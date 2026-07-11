@@ -27,7 +27,7 @@ function Stars({ rating }: { rating: number }) {
 
 /* ── Shop content (rich) ── */
 
-function ShopContent({ shop }: { shop: ShopDetail }) {
+function ShopContent({ shop, onCoffeeChat }: { shop: ShopDetail; onCoffeeChat?: (name: string) => void }) {
   return (
     <>
       <div className="flex items-center gap-3">
@@ -111,6 +111,7 @@ function ShopContent({ shop }: { shop: ShopDetail }) {
         </button>
         <button
           type="button"
+          onClick={() => onCoffeeChat?.(shop.name)}
           className=" flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-primary-yellow text-black text-sm font-bold cursor-pointer transition-all duration-200 hover:bg-primary-yellow/90 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] px-5"
         >
           Request Coffee Chat
@@ -123,7 +124,7 @@ function ShopContent({ shop }: { shop: ShopDetail }) {
 
 /* ── Person content ── */
 
-function PersonContent({ person }: { person: PersonDetail }) {
+function PersonContent({ person, onCoffeeChat }: { person: PersonDetail; onCoffeeChat?: (name: string) => void }) {
   return (
     <>
       <div className="flex items-center gap-3">
@@ -180,6 +181,7 @@ function PersonContent({ person }: { person: PersonDetail }) {
         </button>
         <button
           type="button"
+          onClick={() => onCoffeeChat?.(person.name)}
           className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-primary-yellow text-black text-sm font-bold cursor-pointer transition-all duration-200 hover:bg-primary-yellow/90 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
         >
           Request Coffee Chat
@@ -196,6 +198,7 @@ interface VenueDetailSheetProps {
   open: boolean;
   id: string | null;
   onClose: () => void;
+  onCoffeeChat?: (name: string) => void;
 }
 
 const ANIM_DURATION = 320;
@@ -208,6 +211,7 @@ export default function VenueDetailSheet({
   open,
   id,
   onClose,
+  onCoffeeChat,
 }: VenueDetailSheetProps) {
   const startY = useRef(0);
   const dragStartTranslate = useRef(0);
@@ -360,9 +364,9 @@ export default function VenueDetailSheet({
           style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
         >
           {detail.kind === "shop" ? (
-            <ShopContent shop={detail} />
+            <ShopContent shop={detail} onCoffeeChat={onCoffeeChat} />
           ) : (
-            <PersonContent person={detail} />
+            <PersonContent person={detail} onCoffeeChat={onCoffeeChat} />
           )}
         </div>
       </div>
