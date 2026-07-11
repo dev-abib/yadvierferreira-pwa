@@ -1,13 +1,16 @@
 "use client";
 import AuthBottom from "@/app/components/layout/AuthBottom";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import logo from "@/app/assets/img/coffee.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 
 const Page = () => {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <section className="bg-black w-full min-h-dvh">
       <div className=" w-full relative flex flex-col min-h-dvh pt-15 gap-y-10 justify-between items-center">
@@ -44,11 +47,27 @@ const Page = () => {
                 <div className="flex flex-col gap-y-1.5">
                   <div className="flex flex-col gap-y-3 ">
                     <span className=" inp-label ">Password</span>
-                    <input
-                      placeholder="Enter the email"
-                      type="password"
-                      className="inp-style"
-                    />
+                    <div className="relative w-full">
+                      <input
+                        placeholder="Enter the email"
+                        type={showPassword ? "text" : "password"}
+                        className="inp-style w-full pr-11"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(v => !v)}
+                        aria-label={
+                          showPassword ? "Hide password" : "Show password"
+                        }
+                        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#D8C2B480] cursor-pointer"
+                      >
+                        {showPassword ? (
+                          <EyeOff size={18} />
+                        ) : (
+                          <Eye size={18} />
+                        )}
+                      </button>
+                    </div>
                   </div>
                   <Link href={"/forgot-password"}>
                     <p className=" underline text-[#D8C2B4] font-normal text-[10px] ">

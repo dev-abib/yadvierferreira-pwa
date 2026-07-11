@@ -16,12 +16,14 @@ export default function Page() {
     <div className="app-glow flex h-dvh flex-col overflow-hidden px-5 pt-6 pb-4">
       <div className="flex justify-between items-center shrink-0">
         <h2 className="text-[30px] font-serif font-bold text-white">Message</h2>
-        <button
-          className="h-10 w-10 rounded-xl flex justify-center items-center shadow-lg shadow-black border border-pill-border bg-pill cursor-pointer"
-          aria-label="Contacts"
-        >
-          <Users className="text-primary-yellow" size={20} />
-        </button>
+        <Link href="/network">
+          <button
+            className="h-10 w-10 rounded-xl flex justify-center items-center shadow-lg shadow-black border border-pill-border bg-pill cursor-pointer"
+            aria-label="Contacts"
+          >
+            <Users className="text-primary-yellow" size={20} />
+          </button>
+        </Link>
       </div>
 
       <div className="relative mt-4 shrink-0">
