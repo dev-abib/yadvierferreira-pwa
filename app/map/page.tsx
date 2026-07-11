@@ -34,7 +34,7 @@ export default function Page() {
   };
 
   const openDetailSheet = (id: string) => {
-    setDrawerVenueId(null); // close simple drawer first
+    setDrawerVenueId(null); 
     setDetailSheetId(id);
   };
 

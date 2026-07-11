@@ -80,8 +80,8 @@ export default function VenueDetailDrawer({
   const dragStartTranslate = useRef(0);
   const [translateY, setTranslateY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [mounted, setMounted] = useState(false); // drives enter/exit transition
-  const [rendered, setRendered] = useState(open); // keeps DOM around during exit
+  const [mounted, setMounted] = useState(false);
+  const [rendered, setRendered] = useState(open); 
   const rafRef = useRef<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 

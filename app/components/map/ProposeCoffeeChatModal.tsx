@@ -69,7 +69,7 @@ export default function ProposeCoffeeChatModal({
         value={proposeTo}
         onChange={e => setProposeTo(e.target.value)}
         placeholder="Enter the user name..."
-        className="w-full bg-pill border border-pill-border rounded-2xl px-4 py-3.5 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-primary-yellow"
+        className="w-full bg-[#140D0880]/50 border border-pill-border rounded-2xl px-4 py-3.5 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-primary-yellow"
       />
 
       <p className="text-white/40 text-[11px] font-semibold uppercase tracking-wide mt-6 mb-3">
@@ -80,7 +80,7 @@ export default function ProposeCoffeeChatModal({
         onChange={e => setAgenda(e.target.value)}
         placeholder="What would you like to chat about?"
         rows={4}
-        className="w-full bg-pill border border-pill-border rounded-2xl px-4 py-3.5 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-primary-yellow resize-none"
+        className="w-full bg-[#140D0880]/50 border border-pill-border rounded-2xl px-4 py-3.5 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-primary-yellow resize-none"
       />
 
       <button

@@ -3,6 +3,7 @@
 import { Calendar } from "lucide-react";
 import { useState } from "react";
 import CoffeeChatModal from "../components/map/CoffeeChatModal";
+import Link from "next/link";
 
 const days = [
   { label: "SUN", date: 9 },
@@ -66,8 +67,13 @@ export default function Page() {
             Schedule
           </h2>
         </div>
-        <div className="h-10 w-10 rounded-xl flex justify-center items-center shadow-lg shadow-black border border-pill-border bg-pill cursor-pointer shrink-0">
-          <Calendar className="text-primary-yellow" size={18} />
+        <div className="relative">
+          <Link href="/proposal-request">
+            <div className="h-10 w-10 rounded-xl flex justify-center items-center shadow-lg shadow-black border border-pill-border bg-pill cursor-pointer shrink-0">
+              <Calendar className="text-primary-yellow" size={18} />
+            </div>
+          </Link>
+          <div className="h-3 w-3 rounded-full bg-green-500 absolute top-0 -left-1"></div>
         </div>
       </div>
 
