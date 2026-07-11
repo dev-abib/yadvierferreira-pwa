@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useCallback, useRef, useState } from "react";
 import { ChevronRight, Coffee, X } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { useEffect, useCallback, useRef, useState } from "react";
 
-/* ── Data ── */
 
 interface VenueDetail {
   id: string;
@@ -62,6 +59,7 @@ interface VenueDetailDrawerProps {
   open: boolean;
   venueId: string | null;
   onClose: () => void;
+  onViewDetails?: (id: string) => void;
 }
 
 const ANIM_DURATION = 320;
@@ -74,6 +72,7 @@ export default function VenueDetailDrawer({
   open,
   venueId,
   onClose,
+  onViewDetails,
 }: VenueDetailDrawerProps) {
   const startY = useRef(0);
   const dragStartTranslate = useRef(0);
@@ -248,11 +247,13 @@ export default function VenueDetailDrawer({
                 {venue.distance} · {venue.attendeeCount} attendees nearby
               </p>
             </div>
-            <Link href={`/map/${venue.id}`} className="shrink-0">
-              <div className="h-10 w-10 rounded-2xl flex justify-center items-center shadow-lg shadow-black border border-pill-border bg-pill cursor-pointer">
-                <ChevronRight size={16} className="text-white/60" />
-              </div>
-            </Link>
+            <button
+              type="button"
+              onClick={() => onViewDetails?.(venue.id)}
+              className="h-10 w-10 rounded-2xl flex justify-center items-center shadow-lg shadow-black border border-pill-border bg-pill cursor-pointer"
+            >
+              <ChevronRight size={16} className="text-white/60" />
+            </button>
           </div>
 
           {/* Status + tags */}
