@@ -1,7 +1,7 @@
-import type { Metadata, Viewport } from "next";
-import { DM_Sans, Satisfy } from "next/font/google";
 import "./globals.css";
 import { RegisterSW } from "./register-sw";
+import type { Metadata, Viewport } from "next";
+import { DM_Sans, Satisfy } from "next/font/google";
 import { AppShell } from "./components/layout/app-shell";
 
 const dmSans = DM_Sans({

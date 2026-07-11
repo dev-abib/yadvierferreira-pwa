@@ -71,8 +71,8 @@ function ProfileIcon() {
 
 const navItems = [
   { href: "/", label: "Brewie", icon: BrewieIcon },
-  { href: "/search", label: "Calendar", icon: CalendarIcon },
-  { href: "/notifications", label: "Map", icon: MapIcon },
+  { href: "/schedule", label: "Calendar", icon: CalendarIcon },
+  { href: "/map", label: "Map", icon: MapIcon },
   { href: "/network", label: "Network", icon: NetworkIcon },
   { href: "/profile", label: "Profile", icon: ProfileIcon },
 ];
@@ -85,7 +85,7 @@ export function BottomNav() {
       className="fixed bottom-0 left-0 right-0 z-50 pb-[env(safe-area-inset-bottom)]"
       style={{ backgroundColor: "#0F0A06" }}
     >
-      <div className="h-[64px] flex items-center justify-around max-w-md mx-auto">
+      <div className="h-16 flex items-center justify-around max-w-md mx-auto">
         {navItems.map(({ href, label, icon: Icon }) => {
           const isActive = pathname === href;
           const color = isActive ? "#EAA350" : "#7A6B5D";

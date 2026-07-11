@@ -1,10 +1,16 @@
+"use client";
+
 import AuthBottom from "@/app/components/layout/AuthBottom";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import logo from "@/app/assets/img/coffee.png";
 import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react";
 
-const page = () => {
+const Page = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   return (
     <section className="bg-black w-full min-h-dvh">
       <div className=" w-full relative flex flex-col gap-y-10 h-full pt-15 justify-between items-center">
@@ -42,19 +48,47 @@ const page = () => {
                 </div>
                 <div className="flex flex-col gap-y-3 ">
                   <span className=" inp-label ">Password</span>
-                  <input
-                    placeholder="Enter your password"
-                    type="password"
-                    className="inp-style"
-                  />
+                  <div className="relative w-full">
+                    <input
+                      placeholder="Enter your password"
+                      type={showPassword ? "text" : "password"}
+                      className="inp-style w-full pr-11"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(v => !v)}
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#D8C2B480] cursor-pointer"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-y-3 ">
                   <span className=" inp-label ">Confirm Password</span>
-                  <input
-                    placeholder="Confirm password"
-                    type="password"
-                    className="inp-style"
-                  />
+                  <div className="relative w-full">
+                    <input
+                      placeholder="Confirm password"
+                      type={showConfirmPassword ? "text" : "password"}
+                      className="inp-style w-full pr-11"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(v => !v)}
+                      aria-label={
+                        showConfirmPassword ? "Hide password" : "Show password"
+                      }
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#D8C2B480] cursor-pointer"
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff size={18} />
+                      ) : (
+                        <Eye size={18} />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
               <button className="primary-btn ">Create An Account</button>
@@ -80,4 +114,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
