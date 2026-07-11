@@ -2,6 +2,7 @@
 
 import { Calendar } from "lucide-react";
 import { useState } from "react";
+import CoffeeChatModal from "../components/map/CoffeeChatModal";
 
 const days = [
   { label: "SUN", date: 9 },
@@ -52,6 +53,7 @@ const events = [
 
 export default function Page() {
   const [activeDate, setActiveDate] = useState(11);
+  const [showCalendarModal, setShowCalendarModal] = useState(false);
 
   return (
     <div className="app-glow flex flex-col  px-5 pt-6 pb-4">
@@ -136,10 +138,24 @@ export default function Page() {
         </div>
       </div>
 
-      <button className="shrink-0 cursor-pointer flex mt-10 items-center justify-center gap-2 rounded-2xl border border-dashed border-primary-yellow/50 py-3.5 text-primary-yellow text-sm font-medium">
+      <button
+        type="button"
+        onClick={() => setShowCalendarModal(true)}
+        className="shrink-0 cursor-pointer flex mt-10 items-center justify-center gap-2 rounded-2xl border border-dashed border-primary-yellow/50 py-3.5 text-primary-yellow text-sm font-medium"
+      >
         <span className="text-lg leading-none">+</span>
         <span>Add to my calendar</span>
       </button>
+
+      <CoffeeChatModal
+        open={showCalendarModal}
+        venueName="ALPFA Convention 2026"
+        onClose={() => setShowCalendarModal(false)}
+        onSubmit={data => {
+          console.log("Calendar event proposed:", data);
+          setShowCalendarModal(false);
+        }}
+      />
     </div>
   );
 }
