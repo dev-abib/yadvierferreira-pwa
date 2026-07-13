@@ -177,6 +177,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Share, Download, X } from "lucide-react";
+import Image from "next/image";
 
 interface QrCodeModalProps {
   open: boolean;
@@ -280,9 +281,11 @@ export default function QrCodeModal({
         {/* QR code */}
         <div className="flex justify-center pt-2">
           <div className="bg-[#EDE0CA] rounded-3xl p-5">
-            <img
+            <Image
               src={qrImageUrl}
               alt="QR code"
+              width={208}
+              height={208}
               className="h-52 w-52 object-contain"
             />
           </div>
