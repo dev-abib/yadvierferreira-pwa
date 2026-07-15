@@ -4,6 +4,8 @@ import { Calendar } from "lucide-react";
 import { useState } from "react";
 import CoffeeChatModal from "../components/map/CoffeeChatModal";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../assets/img/logo.png";
 
 const days = [
   { label: "SUN", date: 9 },
@@ -60,9 +62,10 @@ export default function Page() {
     <div className="app-glow flex flex-col  px-5 pt-6 pb-4">
       <div className="flex justify-between items-center shrink-0">
         <div>
-          <h3 className="text-[10px] uppercase font-semibold text-primary-yellow tracking-widest">
+          {/* <h3 className="text-[10px] uppercase font-semibold text-primary-yellow tracking-widest">
             ALPFA CONVENTION 2026
-          </h3>
+          </h3> */}
+          <Image src={Logo} alt="Convention Logo" width={100} height={50} />
           <h2 className="text-[30px] font-bold text-primary-yellow">
             Schedule
           </h2>
@@ -128,16 +131,32 @@ export default function Page() {
                 <span className={`h-2 w-2 rounded-full ${event.dotColor}`} />
               </div>
 
-              <div className="flex-1 rounded-2xl border border-pill-border bg-pill px-4 py-3.5">
-                <h4 className="text-white font-semibold text-[15px]">
-                  {event.title}
-                </h4>
-                <p className="text-white/40 text-xs mt-0.5">{event.location}</p>
-                <span
-                  className={`inline-block mt-2.5 px-3 py-1 rounded-full text-[11px] font-semibold ${event.statusStyle}`}
-                >
-                  {event.status}
-                </span>
+              <div className="flex gap-3 rounded-2xl border border-pill-border bg-pill px-4 py-3.5">
+                <div className="">
+                  <h4 className="text-white font-semibold text-[15px]">
+                    {event.title}
+                  </h4>
+                  <p className="text-white/40 text-xs mt-0.5">
+                    {event.location}
+                  </p>
+                  <span
+                    className={`inline-block mt-2.5 px-3 py-1 rounded-full text-[11px] font-semibold ${event.statusStyle}`}
+                  >
+                    {event.status}
+                  </span>
+                </div>
+                <div className="flex gap-2 shrink-0 items-center">
+                  <div className="bg-[#1A2E50] h-12 w-12 rounded-xl flex justify-center items-center border-2 border-primary-yellow">
+                    <p className="text-white">SL</p>
+                  </div>
+                  <Image
+                    src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=50&h=50&fit=crop"
+                    alt="Proposed Coffee Chat"
+                    width={50}
+                    height={50}
+                    className="rounded-xl object-contain"
+                  />
+                </div>
               </div>
             </div>
           ))}
@@ -147,7 +166,7 @@ export default function Page() {
       <button
         type="button"
         onClick={() => setShowCalendarModal(true)}
-        className="shrink-0 cursor-pointer flex mt-10 items-center justify-center gap-2 rounded-2xl border border-dashed border-primary-yellow/50 py-3.5 text-primary-yellow text-sm font-medium"
+        className="shrink-0 cursor-pointer flex mt-10 mb-5 items-center justify-center gap-2 rounded-2xl border border-dashed border-primary-yellow/50 py-3.5 text-primary-yellow text-sm font-medium"
       >
         <span className="text-lg leading-none">+</span>
         <span>Add to my calendar</span>

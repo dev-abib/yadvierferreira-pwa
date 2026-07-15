@@ -20,7 +20,6 @@ const EXIT_DURATION = 600; // ms — extended for smoother exit
 
 const SplashPage = () => {
   const router = useRouter();
-  const [progress, setProgress] = useState(0);
   const [exiting, setExiting] = useState(false);
   const startTime = useRef<number | null>(null);
   const rafId = useRef<number>(0);
@@ -68,7 +67,6 @@ const SplashPage = () => {
     const tick = (now: number) => {
       const elapsed = now - (startTime.current ?? now);
       const pct = Math.min(elapsed / SPLASH_DURATION, 1);
-      setProgress(pct);
 
       if (pct < 1) {
         rafId.current = requestAnimationFrame(tick);
@@ -87,9 +85,6 @@ const SplashPage = () => {
       if (rafId.current) cancelAnimationFrame(rafId.current);
     };
   }, [router]);
-
-  // Determine which dot is active based on 3 segments
-  const dotIndex = Math.min(Math.floor(progress * 3), 2);
 
   return (
     <section
@@ -138,36 +133,6 @@ const SplashPage = () => {
         <span className="text-lg text-[#D8C2B4E5] leading-[160%] tracking-[0.45px]">
           Network With a Sip!
         </span>
-      </div>
-
-      {/* Animated loading dots — dissolve away on exit */}
-      <div
-        className="absolute bottom-12 flex items-center gap-3 z-20"
-        style={{
-          opacity: exiting ? 0 : 1,
-          transition: "opacity 0.25s ease-out",
-          transitionDelay: exiting ? "200ms" : "0ms",
-        }}
-      >
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="rounded-full transition-all duration-300 ease-out"
-            style={{
-              width: dotIndex === i ? 24 : 8,
-              height: 8,
-              background:
-                i <= dotIndex
-                  ? "#EAA350"
-                  : "rgba(234, 163, 80, 0.3)",
-              transform: i === dotIndex ? "scaleX(1)" : "scaleX(1)",
-              boxShadow:
-                i <= dotIndex
-                  ? "0 0 8px rgba(234, 163, 80, 0.5)"
-                  : "none",
-            }}
-          />
-        ))}
       </div>
     </section>
   );

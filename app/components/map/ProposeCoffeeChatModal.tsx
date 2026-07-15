@@ -71,6 +71,15 @@ export default function ProposeCoffeeChatModal({
         placeholder="Enter the user name..."
         className="w-full bg-[#140D0880]/50 border border-pill-border rounded-2xl px-4 py-3.5 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-primary-yellow"
       />
+      <p className="text-white/40 text-[11px] font-semibold uppercase tracking-wide mt-6 mb-3">
+        Location
+      </p>
+      <input
+        type="text"
+
+        placeholder="Enter Your Location"
+        className="w-full bg-[#140D0880]/50 border border-pill-border rounded-2xl px-4 py-3.5 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-primary-yellow"
+      />
 
       <p className="text-white/40 text-[11px] font-semibold uppercase tracking-wide mt-6 mb-3">
         Agenda (optional)
