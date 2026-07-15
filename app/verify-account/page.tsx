@@ -47,7 +47,7 @@ const Page = () => {
             <form
               onSubmit={e => {
                 e.preventDefault();
-                router.push("/brewie");
+                router.push("/map");
               }}
               className="flex w-full  flex-col gap-y-[44px]"
             >

@@ -34,8 +34,11 @@ export default function ProfileDrawer({ person, onClose }: ProfileDrawerProps) {
   const open = !!person;
 
   return (
+    // z-[100] — must sit above BottomNav's z-50, otherwise the nav bar
+    // paints over the bottom of this sheet (that's what was cutting off
+    // the Connect button; it wasn't a scroll issue).
     <div
-      className={`fixed inset-0 z-50 ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+      className={`fixed inset-0 z-[100] overflow-y-auto min-h-full overflow-y-auto ${open ? "pointer-events-auto" : "pointer-events-none"}`}
       aria-hidden={!open}
     >
       {/* Backdrop */}
@@ -59,8 +62,10 @@ export default function ProfileDrawer({ person, onClose }: ProfileDrawerProps) {
               <span className="h-1 w-10 rounded-full bg-white/15" />
             </div>
 
-            {/* Scrollable content — flex-1 min-h-0 fixes the cut-off connect button */}
-            <div className="overflow-y-auto px-5 pb-6 flex-1 min-h-0">
+            {/* Scrollable content — flex-1 min-h-0 fixes the cut-off connect button.
+                pb-24 (+ safe-area) reserves room so the last button clears
+                the bottom nav / home indicator even while this sheet is open. */}
+            <div className="overflow-y-auto px-5 pb-24 flex-1 min-h-0">
               {/* Header */}
               <div className="flex items-start justify-between pt-4">
                 <div className="flex items-center gap-3">
@@ -199,7 +204,7 @@ export default function ProfileDrawer({ person, onClose }: ProfileDrawerProps) {
                   Coffee Chat
                 </button>
               </div>
-              <button className="w-full mt-5 cursor-pointer py-3 rounded-full bg-[#C58B4F4D]/30 text-primary-yellow border border-pill-border  text-base font-bold">
+              <button className="w-full my-5  cursor-pointer py-3 rounded-full bg-[#C58B4F4D]/30 text-primary-yellow border border-pill-border  text-base font-bold">
                 + Connect
               </button>
             </div>
