@@ -70,7 +70,7 @@ function ProfileIcon() {
 }
 
 const navItems = [
-  { href: "/", label: "Brewie", icon: BrewieIcon },
+  { href: "/brewie", label: "Brewie", icon: BrewieIcon },
   { href: "/schedule", label: "Calendar", icon: CalendarIcon },
   { href: "/map", label: "Map", icon: MapIcon },
   { href: "/network", label: "Network", icon: NetworkIcon },

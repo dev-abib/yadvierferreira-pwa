@@ -1,26 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import SplashPage from "./splash-page";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    router.replace("/login");
+  }, [router]);
 
-  if (!mounted) {
-    return (
-      <div
-        style={{
-          height: "100dvh",
-          width: "100%",
-          background: "#0D0906",
-        }}
-      />
-    );
-  }
-
-  return <SplashPage />;
+  return (
+    <div
+      style={{
+        height: "100dvh",
+        width: "100%",
+        background: "#0D0906",
+      }}
+    />
+  );
 }
