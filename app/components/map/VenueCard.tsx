@@ -25,11 +25,7 @@ export default function VenueCard({ venue, onClick }: VenueCardProps) {
             sizes="64px"
             className="object-cover"
           />
-          {venue.hot && (
-            <span className="absolute bottom-1 right-1 text-sm leading-none">
-              🔥
-            </span>
-          )}
+    
         </div>
         <div className="flex-1 min-w-0">
           <h4 className="text-white font-semibold text-lg leading-tight">
