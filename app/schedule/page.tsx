@@ -5,7 +5,7 @@ import { useState } from "react";
 import CoffeeChatModal from "../components/map/CoffeeChatModal";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../assets/img/logo.png";
+import Logo from "../assets/img/Frame 24.png";
 
 const days = [
   { label: "SUN", date: 9 },
@@ -65,7 +65,7 @@ export default function Page() {
           {/* <h3 className="text-[10px] uppercase font-semibold text-primary-yellow tracking-widest">
             ALPFA CONVENTION 2026
           </h3> */}
-          <Image src={Logo} alt="Convention Logo" width={100} height={50} />
+          <Image src={Logo} alt="Convention Logo" width={200} height={200} />
           <h2 className="text-[30px] font-bold text-primary-yellow">
             Schedule
           </h2>
