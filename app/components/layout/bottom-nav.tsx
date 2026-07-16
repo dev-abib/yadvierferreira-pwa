@@ -91,11 +91,11 @@ export function BottomNav() {
       // style={{ backgroundColor: "#0F0A06" }}
     >
       <div
-        className="flex items-center justify-around max-w-md my-5 mx-4 py-2.5 rounded-full"
         style={{
-          backgroundColor: "#171009",
-          border: "1px solid rgba(255,255,255,0.06)",
+          backgroundColor: "rgba(15, 10, 6, 0.20)",
+          boxShadow: "0 0 12px 2px rgba(234, 163, 80, 0.10) inset",
         }}
+        className="flex items-center justify-around max-w-md my-5 mx-4 py-2.5 rounded-[60px] border-[1px] border-solid border-[#FFFFFF33]  shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-[8px] "
       >
         {navItems.map(({ href, label, icon: Icon }) => {
           const isActive = pathname === href;
