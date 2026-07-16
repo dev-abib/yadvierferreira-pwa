@@ -131,7 +131,7 @@ export default function Home() {
   }
 
   return (
-    <div className="app-glow flex h-dvh flex-col overflow-hidden">
+    <div className="app-glow flex h-dvh flex-col overflow-hidden pb-5">
       <RegisterSW />
       <ChatHeader />
       <div

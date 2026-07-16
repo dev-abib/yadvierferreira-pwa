@@ -135,7 +135,7 @@ export default function Page() {
       </div> */}
 
       {tab === "explore" ? (
-        <div className="relative flex-1 min-h-105 rounded-3xl overflow-hidden border border-pill-border">
+        <div className="relative flex-1 min-h-100 rounded-3xl overflow-hidden border border-pill-border">
           <iframe
             title="Nearby map"
             src="https://www.google.com/maps?q=London&output=embed"
@@ -147,20 +147,19 @@ export default function Page() {
           <div className="absolute inset-0 bg-black/20 pointer-events-none" />
 
           {/* Ambient activity glow behind the pin cluster */}
-          <div
+          {/* <div
             className="absolute rounded-full pointer-events-none"
             style={{
               top: glowCenter.top,
               left: glowCenter.left,
               width: "70%",
               paddingBottom: "70%",
-              background:
-                "red",
+              background: "red",
               filter: "blur(28px)",
               mixBlendMode: "screen",
               animation: "heat-glow-pulse 4.5s ease-in-out infinite",
             }}
-          />
+          /> */}
 
           {pins.map((pin, i) => {
             const isSelected = drawerVenueId === pin.id;
