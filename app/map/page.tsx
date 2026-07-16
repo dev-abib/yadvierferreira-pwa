@@ -1,32 +1,20 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import { Search, Coffee } from "lucide-react";
 import VenueDetailDrawer from "../components/map/VenueDetailDrawer";
 import VenueDetailSheet from "../components/map/VenueDetailSheet";
 import CoffeeChatModal from "../components/map/CoffeeChatModal";
-import FilterSelect from "../components/map/FilterSelect";
 import VenueCard from "../components/map/VenueCard";
-import { filterOptions, pins, venues } from "../components/map/map-data";
-import type { FilterKey } from "../components/map/map-data";
-
+import {  pins, venues } from "../components/map/map-data";
 type Tab = "explore" | "nearby";
-
-// Parses a "42%" style offset into a plain number for averaging.
-const pct = (v: string) => parseFloat(v.replace("%", "")) || 0;
 
 export default function Page() {
   const [tab, setTab] = useState<Tab>("explore");
-  const [selectedFilters, setSelectedFilters] = useState<
-    Partial<Record<FilterKey, string>>
-  >({});
+
   const [drawerVenueId, setDrawerVenueId] = useState<string | null>(null);
   const [detailSheetId, setDetailSheetId] = useState<string | null>(null);
   const [coffeeChatVenue, setCoffeeChatVenue] = useState<string | null>(null);
-
-  const handleFilterChange = (id: FilterKey, value: string) => {
-    setSelectedFilters(prev => ({ ...prev, [id]: value }));
-  };
 
   const openDrawer = (id: string) => {
     setDrawerVenueId(id);
@@ -60,14 +48,6 @@ export default function Page() {
     },
     [],
   );
-
-  // Ambient "activity glow" centered on the pin cluster, like a heatmap hotspot
-  const glowCenter = useMemo(() => {
-    if (!pins.length) return { top: "35%", left: "45%" };
-    const top = pins.reduce((sum, p) => sum + pct(p.top), 0) / pins.length;
-    const left = pins.reduce((sum, p) => sum + pct(p.left), 0) / pins.length;
-    return { top: `${top}%`, left: `${left}%` };
-  }, []);
 
   return (
     <div className="app-glow flex flex-col px-5 pt-6 pb-4">
